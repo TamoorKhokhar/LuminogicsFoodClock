@@ -10,9 +10,8 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
-  p: 4
+  p: 0
 };
 
 export default function BasicModal(props) {
@@ -29,7 +28,15 @@ export default function BasicModal(props) {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={{ ...style, width: "50vw" }}>
+        <Box
+          sx={{
+            ...style,
+            width: "70vw",
+            backgroundImage: `url(${props.image})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center"
+          }}>
           {props.teaData}
           {props.lunchData}
         </Box>

@@ -3,9 +3,7 @@ import { Grid, Typography, Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../theme/theme";
-import DeleteButton from "../components/deleteBtn";
-import EditButton from "../components/editBtn";
-import Btn from "../components/orderBtn";
+import Buttons from "./buttons";
 function LunchData() {
   return (
     <ThemeProvider theme={theme}>
@@ -16,7 +14,9 @@ function LunchData() {
           justifyContent: "center",
           minHeight: "max-content"
         }}>
-        <Box
+        <Grid
+          md={12}
+          xs={12}
           component="form"
           sx={{
             display: "flex",
@@ -25,7 +25,6 @@ function LunchData() {
             marginTop: "1rem",
             marginBottom: "1rem",
             width: "100%",
-            border: "1px solid black",
             borderRadius: "5px",
             height: "max-content"
           }}>
@@ -39,29 +38,15 @@ function LunchData() {
             <Typography variant="h4">Lunch Details</Typography>
             <Typography variant="p1">User Name:</Typography>
             <TextField required id="outlined-required" label="Required" />
-
             <Typography variant="p1">Item Description:</Typography>
             <TextField required id="outlined-required" label="Required" />
             <Typography variant="p1">Rotti:</Typography>
             <TextField required id="outlined-required" label="Required" type="number" />
-            <Typography variant="p1">Rotti:</Typography>
+            <Typography variant="p1">Amount Paid:</Typography>
             <TextField required id="outlined-required" label="Required" type="number" />
-            <Grid
-              container
-              sx={{ justifyContent: "space-around", marginTop: "25px", marginBottom: "0.5rem" }}>
-              <Grid item xs={12} lg={5}></Grid>
-              <Grid item xs={12} md={3} lg={2}>
-                <DeleteButton />
-              </Grid>
-              <Grid item xs={12} md={3} lg={2}>
-                <EditButton />
-              </Grid>
-              <Grid item xs={12} md={3} lg={2}>
-                <Btn text="Order" />
-              </Grid>
-            </Grid>
+            <Buttons />
           </Box>
-        </Box>
+        </Grid>
       </Grid>
     </ThemeProvider>
   );

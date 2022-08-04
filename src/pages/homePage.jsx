@@ -6,8 +6,11 @@ import TeaData from "../components/teaData";
 import LunchData from "../components/lunchData";
 import BasicModal from "../components/modals/modal";
 import MorningTea from "../assets/images/MorningTea.png";
-import Lunch from "../assets/images/Lunch.jpg";
+import Lunch from "../assets/images/Lunch.png";
 import EveningTea from "../assets/images/EveningTea.png";
+import Modallunch from "../assets/images/ModalLunch.png";
+import ModalMorningTea from "../assets/images/ModalMorningTea.png";
+import ModalEveningTea from "../assets/images/ModalEveningtea.png";
 function HomePage() {
   return (
     <>
@@ -38,9 +41,19 @@ function HomePage() {
               justifyContent: "center",
               marginTop: "1rem"
             }}>
-            <BasicModal teaData={<TeaData />} title="Morning Tea" src={MorningTea} />
-            <BasicModal lunchData={<LunchData />} title="Lunch" src={Lunch} />
-            <BasicModal teaData={<TeaData />} title="Evening Tea" src={EveningTea} />
+            <BasicModal
+              teaData={<TeaData />}
+              title="Morning Tea"
+              src={MorningTea}
+              image={ModalMorningTea}
+            />
+            <BasicModal lunchData={<LunchData />} title="Lunch" src={Lunch} image={Modallunch} />
+            <BasicModal
+              teaData={<TeaData />}
+              title="Evening Tea"
+              src={EveningTea}
+              image={ModalEveningTea}
+            />
           </Grid>
         </Grid>
       </ThemeProvider>
