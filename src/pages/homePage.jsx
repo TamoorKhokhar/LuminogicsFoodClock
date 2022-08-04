@@ -2,9 +2,12 @@ import Header from "../components/header";
 import theme from "../theme/theme";
 import { ThemeProvider } from "@emotion/react";
 import { Grid, Typography } from "@mui/material";
-import MorningModal from "../components/modals/morningTeaModal";
-import EveningModal from "../components/modals/eveningTeaModal";
-import LunchModal from "../components/modals/lunchModal";
+import TeaData from "../components/teaData";
+import LunchData from "../components/lunchData";
+import BasicModal from "../components/modals/modal";
+import MorningTea from "../assets/images/MorningTea.png";
+import Lunch from "../assets/images/Lunch.jpg";
+import EveningTea from "../assets/images/EveningTea.png";
 function HomePage() {
   return (
     <>
@@ -20,7 +23,7 @@ function HomePage() {
           }}>
           <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
             <Grid item xs={10}>
-              <Typography variant="h2"> Start Your Day With Fresh Mind</Typography>
+              <Typography variant="h1"> Start Your Day With Fresh Mind</Typography>
               <Typography variant="subtitle1">
                 Wide Variety of IT Services and We work with small to mid-sized companies to build
                 customized software solutions.
@@ -35,9 +38,9 @@ function HomePage() {
               justifyContent: "center",
               marginTop: "1rem"
             }}>
-            <MorningModal />
-            <LunchModal />
-            <EveningModal />
+            <BasicModal teaData={<TeaData />} title="Morning Tea" src={MorningTea} />
+            <BasicModal lunchData={<LunchData />} title="Lunch" src={Lunch} />
+            <BasicModal teaData={<TeaData />} title="Evening Tea" src={EveningTea} />
           </Grid>
         </Grid>
       </ThemeProvider>

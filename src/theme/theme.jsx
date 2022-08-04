@@ -2,12 +2,12 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#202020",
-      light: "#FAFAFA"
+      main: "#34474E", //nav-bar
+      light: "#FFFFFF" //white-background
     },
     secondary: {
-      main: "#132F4C",
-      light: "#6DB784"
+      main: "#242424", //heading-text
+      light: "#686868s" //paragraph-text
     }
   },
   typography: {
@@ -31,12 +31,14 @@ const theme = createTheme({
       fontSize: "1.5rem",
       fontWeight: 700,
       textAlign: "center",
-      color: "#fff"
+      color: "#242424",
+      cursor: "pointer"
     },
     h4: {
-      fontSize: "2rem",
+      fontSize: "1.5rem",
       fontWeight: 600,
-      marginTop: "1rem"
+      marginTop: "1rem",
+      color: "#242424"
     },
     h5: {
       //For nav bar number
@@ -45,13 +47,17 @@ const theme = createTheme({
       width: "max-content"
     },
     h6: {
-      //for nav bar login
       fontSize: "1.3rem",
       textAlign: "center",
-      marginLeft: "0.1rem",
       width: "max-content"
     },
-
+    p1: {
+      fontSize: "1rem",
+      textAlign: "center",
+      width: "max-content",
+      marginTop: "0.5rem",
+      marginBottom: "0.5rem"
+    },
     subtitle1: {
       fontWeight: 200,
       fontSize: "1rem",

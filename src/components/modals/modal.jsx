@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import MenuCard from "../menuCard";
 
@@ -15,30 +15,23 @@ const style = {
   p: 4
 };
 
-export default function MorningModal() {
+export default function BasicModal(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <MenuCard
-        handleOpen={handleOpen}
-        title="Morning Tea"
-        src="https://foodhub.modeltheme.com/wp-content/uploads/2020/01/burger_categ-400x500.jpg"
-      />
+      <MenuCard handleOpen={handleOpen} title={props.title} src={props.src} />
+
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+        <Box sx={{ ...style, width: "50vw" }}>
+          {props.teaData}
+          {props.lunchData}
         </Box>
       </Modal>
     </>

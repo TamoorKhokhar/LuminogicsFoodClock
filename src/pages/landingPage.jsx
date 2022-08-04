@@ -40,7 +40,7 @@ function LandingPage() {
                 borderRadius: "2rem",
                 background: "#34474E"
               }}>
-              <Link to="/homePage" style={{ color: "white", textDecorationLine: "none" }}>
+              <Link to="/homePage" style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
                 Get Started
               </Link>
             </Button>
@@ -54,9 +54,8 @@ function LandingPage() {
             <Box
               sx={{
                 width: "100%",
-                backgroundColor: "#FAFAFA",
+                backgroundColor: "white",
                 overflow: "hidden",
-
                 borderRadius: "2rem"
               }}>
               <img
