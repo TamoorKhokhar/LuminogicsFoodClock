@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography, Box } from "@mui/material";
-function MenuCard(props) {
+function MenuCard({ title, src, handleOpen }) {
   return (
     <Grid
       item
@@ -21,7 +21,7 @@ function MenuCard(props) {
           borderRadius: "1rem"
         }}>
         <img
-          src={props.src}
+          src={src}
           alt="image2"
           style={{
             height: "100%",
@@ -31,7 +31,7 @@ function MenuCard(props) {
             cursor: "pointer",
             overflow: "hidden"
           }}
-          onClick={props.handleOpen}
+          onClick={handleOpen}
         />
         <Box
           sx={{
@@ -41,7 +41,7 @@ function MenuCard(props) {
             width: "90%",
             padding: "15px"
           }}>
-          <Typography variant="h3">{props.title}</Typography>
+          <Typography variant="h3">{title}</Typography>
         </Box>
       </Box>
     </Grid>

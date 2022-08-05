@@ -31,7 +31,6 @@ function LandingPage() {
               Wide Variety of IT Services and We work with small to mid-sized companies to build
               customized software solutions.
             </Typography>
-
             <Button
               variant="contained"
               sx={{
