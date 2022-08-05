@@ -14,14 +14,14 @@ const style = {
   p: 0
 };
 
-export default function BasicModal(props) {
+export default function BasicModal({ teaData, lunchData, title, src, image }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <MenuCard handleOpen={handleOpen} title={props.title} src={props.src} />
+      <MenuCard handleOpen={handleOpen} title={title} src={src} />
 
       <Modal
         open={open}
@@ -32,13 +32,13 @@ export default function BasicModal(props) {
           sx={{
             ...style,
             width: "70vw",
-            backgroundImage: `url(${props.image})`,
+            backgroundImage: `url(${image})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center"
           }}>
-          {props.teaData}
-          {props.lunchData}
+          {teaData}
+          {lunchData}
         </Box>
       </Modal>
     </>

@@ -6,7 +6,7 @@ const theme = createTheme({
       light: "#FFFFFF" //white-background
     },
     secondary: {
-      main: "#242424", //heading-text
+      main: "#242424", //head-text
       light: "#686868s" //paragraph-text
     }
   },
@@ -41,7 +41,6 @@ const theme = createTheme({
       color: "#242424"
     },
     h5: {
-      //For nav bar number
       fontSize: "1.3rem",
       textAlign: "center",
       width: "max-content"
