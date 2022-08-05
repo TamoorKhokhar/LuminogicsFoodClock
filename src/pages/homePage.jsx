@@ -9,7 +9,7 @@ import MorningTea from "../assets/images/MorningTea.png";
 import Lunch from "../assets/images/Lunch.png";
 import EveningTea from "../assets/images/EveningTea.png";
 import Modallunch from "../assets/images/ModalLunch.png";
-import ModalMorningTea from "../assets/images/ModalMorningTea.png";
+import ModalMorningTea from "../assets/images/ModalMorningTea.PNG";
 import ModalEveningTea from "../assets/images/ModalEveningtea.png";
 function HomePage() {
   return (
@@ -26,10 +26,9 @@ function HomePage() {
           }}>
           <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
             <Grid item xs={10}>
-              <Typography variant="h1"> Start Your Day With Fresh Mind</Typography>
+              <Typography variant="h2"> Start Your Day With Fresh Mind</Typography>
               <Typography variant="subtitle1">
-                Wide Variety of IT Services and We work with small to mid-sized companies to build
-                customized software solutions.
+                “Tell me what you eat, and I will tell you who you are.”
               </Typography>
             </Grid>
           </Grid>
