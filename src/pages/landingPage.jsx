@@ -24,12 +24,14 @@ function LandingPage() {
             sx={{
               display: "flex",
               alignItems: "center",
-              flexDirection: "column"
+              flexDirection: "column",
+              padding: `1.5rem`
             }}>
             <Typography variant="h1"> LUMINOGICS FOOD CLOCK</Typography>
             <Typography variant="subtitle1">
-              Wide Variety of IT Services and We work with small to mid-sized companies to build
-              customized software solutions.
+              ““Food is everything we are. It’s an extension of nationalist feeling, ethnic feeling,
+              your personal history, your province, your region, your tribe. It’s inseparable from
+              those from the get-go.””
             </Typography>
             <Button
               variant="contained"

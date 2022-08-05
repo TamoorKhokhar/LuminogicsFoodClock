@@ -12,6 +12,7 @@ const theme = createTheme({
   },
   typography: {
     h1: {
+      fontFamily: "Lucida Handwriting",
       fontSize: "2.5rem",
       fontWeight: 700,
       color: "#242424",
@@ -59,7 +60,7 @@ const theme = createTheme({
     },
     subtitle1: {
       fontWeight: 200,
-      fontSize: "1rem",
+      fontSize: "1.5rem",
       paddingLeft: "2rem",
       paddingRight: "2rem",
       textAlign: "center",
