@@ -5,12 +5,12 @@ import { Grid, Typography } from "@mui/material";
 import TeaData from "../components/teaData";
 import LunchData from "../components/lunchData";
 import BasicModal from "../components/modals/modal";
-import MorningTea from "../assets/images/MorningTea.png";
-import Lunch from "../assets/images/Lunch.png";
-import EveningTea from "../assets/images/EveningTea.png";
-import Modallunch from "../assets/images/ModalLunch.png";
-import ModalMorningTea from "../assets/images/ModalMorningTea.PNG";
-import ModalEveningTea from "../assets/images/ModalEveningtea.png";
+import MorningTeaImage from "../assets/images/MorningTea.png";
+import LunchImage from "../assets/images/Lunch.png";
+import EveningTeaImage from "../assets/images/EveningTea.png";
+import ModallunchImage from "../assets/images/ModalLunch.png";
+import ModalMorningTeaImage from "../assets/images/ModalMorningTea.png";
+import ModalEveningTeaImage from "../assets/images/ModalEveningtea.png";
 function HomePage() {
   return (
     <>
@@ -43,15 +43,20 @@ function HomePage() {
             <BasicModal
               teaData={<TeaData />}
               title="Morning Tea"
-              src={MorningTea}
-              image={ModalMorningTea}
+              src={MorningTeaImage}
+              image={ModalMorningTeaImage}
             />
-            <BasicModal lunchData={<LunchData />} title="Lunch" src={Lunch} image={Modallunch} />
+            <BasicModal
+              lunchData={<LunchData />}
+              title="Lunch"
+              src={LunchImage}
+              image={ModallunchImage}
+            />
             <BasicModal
               teaData={<TeaData />}
               title="Evening Tea"
-              src={EveningTea}
-              image={ModalEveningTea}
+              src={EveningTeaImage}
+              image={ModalEveningTeaImage}
             />
           </Grid>
         </Grid>
