@@ -17,7 +17,6 @@ function SignUp() {
 
   function SubmitForm(e) {
     e.preventDefault();
-    console.log(userName, email, password);
   }
 
   return (

@@ -14,7 +14,6 @@ function SignIn() {
   const [password, setPassword] = useState("");
   function SubmitForm(e) {
     e.preventDefault();
-    console.log(email, password);
   }
   return (
     <>
