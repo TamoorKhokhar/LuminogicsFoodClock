@@ -9,7 +9,7 @@ import MorningTea from "../assets/images/MorningTea.png";
 import Lunch from "../assets/images/Lunch.png";
 import EveningTea from "../assets/images/EveningTea.png";
 import Modallunch from "../assets/images/ModalLunch.png";
-import ModalMorningTea from "../assets/images/ModalMorningTea.PNG";
+import ModalMorningTea from "../assets/images/ModalMorningTea.png";
 import ModalEveningTea from "../assets/images/ModalEveningtea.png";
 function HomePage() {
   return (

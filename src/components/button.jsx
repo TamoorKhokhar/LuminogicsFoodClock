@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
-export default function Btn({ disabled, style, variant, icon, onClick, text }) {
+export default function Buttont({ disabled, style, variant, icon, onClick, text }) {
   return (
     <Button
       disabled={disabled}
