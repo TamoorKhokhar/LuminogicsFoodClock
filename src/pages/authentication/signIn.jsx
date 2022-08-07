@@ -12,7 +12,7 @@ import SignInImage from "../../assets/images/SignIn.png";
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  function SubmitForm(e) {
+  function submitForm(e) {
     e.preventDefault();
   }
   return (
@@ -40,7 +40,7 @@ function SignIn() {
             }}>
             <Box
               component="form"
-              onSubmit={SubmitForm}
+              onSubmit={submitForm}
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -96,7 +96,7 @@ function SignIn() {
                     sx={{ mt: 2, mb: 2 }}
                     text="Sign In"
                     disabled={email === "" || password === ""}
-                    onClick={SubmitForm}
+                    onClick={submitForm}
                   />
                   <Grid container>
                     <Grid item xs>
