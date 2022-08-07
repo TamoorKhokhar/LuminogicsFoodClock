@@ -123,7 +123,7 @@ function SignUp() {
                     </Grid>
                     <Grid item>
                       <Link href="signIn" variant="body2">
-                        {" Sign In"}
+                        Sign In
                       </Link>
                     </Grid>
                   </Grid>
