@@ -69,7 +69,11 @@ function LandingPage() {
               <img
                 src={OfficeBoyImage}
                 alt="image2"
-                style={{ width: "100%", objectFit: "contain" }}
+                style={{
+                  width: "100%",
+                  objectFit: "contain",
+                  boxShadow: "5px 30px 10px #DBEAFF"
+                }}
               />
             </Box>
           </Grid>

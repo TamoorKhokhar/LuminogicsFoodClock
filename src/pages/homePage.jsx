@@ -4,7 +4,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Grid, Typography } from "@mui/material";
 import TeaData from "../components/teaData";
 import LunchData from "../components/lunchData";
-import BasicModal from "../components/modals/userSideModal";
+import BasicModal from "../components/modals/basicModal";
 import MorningTeaImage from "../assets/images/MorningTea.png";
 import LunchImage from "../assets/images/Lunch.png";
 import EveningTeaImage from "../assets/images/EveningTea.png";
@@ -42,11 +42,11 @@ function HomePage() {
 
             <Grid
               container
+              md={12}
               xs={10}
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                marginTop: "1rem"
+                justifyContent: "center"
               }}>
               <BasicModal
                 teaData={<TeaData />}

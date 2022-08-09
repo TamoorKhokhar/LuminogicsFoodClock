@@ -14,14 +14,14 @@ const style = {
   p: 0
 };
 
-export default function BasicModal({ teaData, lunchData, title, src, image }) {
+export default function BasicModal({ teaData, lunchData, title, src, image, button }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <MenuCard handleOpen={handleOpen} title={title} src={src} />
+      <MenuCard handleOpen={handleOpen} title={title} src={src} button={button} />
 
       <Modal
         open={open}
