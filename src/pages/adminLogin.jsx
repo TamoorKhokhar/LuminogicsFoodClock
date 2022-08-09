@@ -1,48 +1,35 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
-import Button from "../../components/button";
+import Button from "../components/button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import theme from "../../theme/theme";
+import theme from "../theme/theme";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@emotion/react";
 import Link from "@mui/material/Link";
-import SignInImage from "../../assets/images/SignIn.png";
-import { signUp } from "../../utils/services/tableDataServices";
-import { useDispatch } from "react-redux";
-import { sign_up } from "../../redux/action/actions";
+import AdminLoginImage from "../assets/images/adminLogin.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
-function SignUp() {
-  const [userName, setUserName] = useState("");
+function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const submitForm = async (e) => {
     e.preventDefault();
-    const data = {
-      userName: userName,
-      email: email,
-      password: password
-    };
-    const userData = await signUp(data);
-    dispatch(sign_up(userData));
-    console.log(userData);
-    if (userData?.metadata?.status === "SUCCESS") {
-      setTimeout(() => {
-        navigate(`/signIn`);
-      }, 3000);
-      toast("Sign Up Successfully!");
-      setUserName(""), setEmail(""), setPassword("");
+    if (email === "faisal123@luminogics.com" && password === "faisal123") {
+      localStorage.setItem("email", "faisal123@luminogics.com");
+      toast("Login Successfull!");
+      navigate("/adminDashboard");
+    } else if (email !== "faisal123@luminogics.com") {
+      toast("Wrong Email Address");
+    } else if (password !== "faisal123") {
+      toast("Wrong password!");
     } else {
-      toast("Error! Please Add Correct Data");
+      toast("Wrong Email and password!");
     }
   };
-
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -52,7 +39,7 @@ function SignUp() {
             display: "flex",
             justifyContent: "center",
             minHeight: "100vh",
-            backgroundColor: "#66DD8D"
+            backgroundColor: "#B29AE8"
           }}>
           <Grid
             item
@@ -68,6 +55,8 @@ function SignUp() {
               backgroundColor: "#fafafa"
             }}>
             <Box
+              component="form"
+              onSubmit={submitForm}
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -79,7 +68,7 @@ function SignUp() {
                 height: "max-content"
               }}>
               <Grid item>
-                <img sx={{ objectFit: "contain" }} src={SignInImage} alt="signInpage" />
+                <img sx={{ objectFit: "contain" }} src={AdminLoginImage} alt="adminLogin" />
               </Grid>
               <Grid
                 item
@@ -89,21 +78,9 @@ function SignUp() {
                   width: "90%"
                 }}>
                 <Typography component="h1" variant="h5">
-                  Sign Up Your Account
+                  Admin Sign In
                 </Typography>
-                <Box component="form" onSubmit={submitForm} noValidate sx={{ mt: 1, mb: 4 }}>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="username"
-                    label="User Name"
-                    name="name"
-                    autoComplete="Name"
-                    autoFocus
-                    onChange={(e) => setUserName(e.target.value)}
-                    value={userName}
-                  />
+                <Box noValidate sx={{ mt: 1, mb: 4 }}>
                   <TextField
                     margin="normal"
                     required
@@ -133,9 +110,9 @@ function SignUp() {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 2, mb: 2 }}
-                    text="Sign Up"
+                    text="Sign In"
+                    disabled={email === "" || password === ""}
                     onClick={submitForm}
-                    disabled={userName === "" || email === "" || password === ""}
                   />
                   <ToastContainer
                     position="top-right"
@@ -149,12 +126,7 @@ function SignUp() {
                   />
                   <Grid container>
                     <Grid item xs>
-                      <Link href="/adminLogin" variant="body2">
-                        Sign In As Admin
-                      </Link>
-                    </Grid>
-                    <Grid item>
-                      <Link href="signIn" variant="body2">
+                      <Link href="/signIn" variant="body2">
                         Sign In As User
                       </Link>
                     </Grid>
@@ -168,4 +140,4 @@ function SignUp() {
     </>
   );
 }
-export default SignUp;
+export default AdminLogin;

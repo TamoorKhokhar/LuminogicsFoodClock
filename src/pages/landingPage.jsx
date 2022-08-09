@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/header";
 import theme from "../theme/theme";
 import { ThemeProvider } from "@emotion/react";
 import { Grid, Typography, Box, Button } from "@mui/material";
 import OfficeBoyImage from "../assets/images/OfficeBoy.png";
-
+import Header from "../components/header";
 function LandingPage() {
   return (
     <>
@@ -43,9 +42,15 @@ function LandingPage() {
                 borderRadius: "2rem",
                 background: "#34474E"
               }}>
-              <Link to="/signIn" style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
-                Get Started
-              </Link>
+              {!localStorage.getItem("email") ? (
+                <Link to="/signIn" style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
+                  Get Started
+                </Link>
+              ) : (
+                <Link to="/adminDashboard" style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
+                  Get Started
+                </Link>
+              )}
             </Button>
           </Grid>
 

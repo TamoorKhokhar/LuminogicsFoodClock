@@ -3,8 +3,12 @@ import { Grid, Typography, Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../theme/theme";
+import { useSelector } from "react-redux";
 import Buttons from "./buttonContainer";
 function LunchData() {
+  const user = useSelector((state) => {
+    return state?.signIn?.signIn[0]?.payload?.data?.user?.userName;
+  });
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -15,6 +19,7 @@ function LunchData() {
           minHeight: "max-content"
         }}>
         <Grid
+          item
           md={12}
           xs={12}
           component="form"
@@ -37,7 +42,7 @@ function LunchData() {
             }}>
             <Typography variant="h4">Lunch Details</Typography>
             <Typography variant="p1">User Name:</Typography>
-            <TextField required id="outlined-required" label="Required" />
+            <TextField required id="outlined-required" label="Required" value={user} />
             <Typography variant="p1">Item Description:</Typography>
             <TextField required id="outlined-required" label="Required" />
             <Typography variant="p1">Rotti:</Typography>

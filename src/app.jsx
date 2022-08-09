@@ -2,15 +2,21 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/landingPage";
 import SignIn from "./pages/authentication/signIn";
 import SignUp from "./pages/authentication/signUp";
+import Protected from "./components/protected";
+import AdminHomePage from "./pages/adminDashBoard";
+import Auth from "./components/auth";
 import HomePage from "./pages/homePage";
+import AdminLogin from "./pages/adminLogin";
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signIn" element={<Protected Component={SignIn} />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/homePage" element={<HomePage />} />
+        <Route path="/homePage" element={<Protected Component={HomePage} />} />
+        <Route path="/adminLogin" element={<Auth Component={AdminLogin} />} />
+        <Route path="/adminDashboard" element={<Auth Component={AdminHomePage} />} />
       </Routes>
     </>
   );
