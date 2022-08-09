@@ -6,7 +6,6 @@ export default function TableContainer() {
   const fetchTableData = async () => {
     const tableData = await getTableData();
     setTableRowsData(tableData);
-    console.log(tableData);
   };
   useEffect(() => {
     fetchTableData();
