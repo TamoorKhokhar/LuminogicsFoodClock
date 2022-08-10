@@ -31,12 +31,8 @@ function SignUp() {
     };
     const userData = await signUp(data);
     dispatch(sign_up(userData));
-    console.log(userData);
     if (userData?.metadata?.status === "SUCCESS") {
-      setTimeout(() => {
-        navigate(`/signIn`);
-      }, 3000);
-      toast("Sign Up Successfully!");
+      navigate(`/signIn`);
       setUserName(""), setEmail(""), setPassword("");
     } else {
       toast("Error! Please Add Correct Data");

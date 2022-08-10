@@ -28,11 +28,8 @@ function SignIn() {
     const userData = await signIn(newUser);
     dispatch(sign_In(userData));
     if (userData?.metadata?.status === "SUCCESS") {
-      toast(userData?.metadata?.message);
+      navigate("/homePage");
       localStorage.setItem("token", userData.payload.data.token);
-      setTimeout(() => {
-        navigate("/homePage");
-      }, 3000);
     } else {
       toast(`User ${userData?.statusText}`);
     }
