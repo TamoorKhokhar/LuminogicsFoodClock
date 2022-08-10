@@ -12,6 +12,7 @@ import ModallunchImage from "../assets/images/ModalLunch.png";
 import ModalMorningTeaImage from "../assets/images/ModalMorningTea.png";
 import ModalEveningTeaImage from "../assets/images/ModalEveningtea.png";
 import Buttont from "../components/button";
+import TeaRecords from "../components/teaRecords";
 function HomePage() {
   return (
     <>
@@ -50,7 +51,7 @@ function HomePage() {
                 justifyContent: "center"
               }}>
               <BasicModal
-                teaData={<TeaData />}
+                teaData={<TeaRecords />}
                 title="Morning Tea"
                 button={
                   <Buttont
