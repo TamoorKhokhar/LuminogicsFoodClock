@@ -1,4 +1,5 @@
 import Header from '../components/header';
+import * as React from 'react';
 import theme from '../theme/theme';
 import { ThemeProvider } from '@emotion/react';
 import { Grid, Typography } from '@mui/material';
@@ -13,6 +14,9 @@ import Buttont from '../components/button';
 import TeaRecords from '../components/teaRecords';
 import TableRecords from '../components/tableRecords';
 function HomePage() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   return (
     <>
       <Header />
@@ -50,8 +54,11 @@ function HomePage() {
               <BasicModal
                 teaData={<TeaRecords heading="Morning Tea" />}
                 title="Morning Tea"
+                open={open}
                 button={
                   <Buttont
+                    handleOpen={handleOpen}
+                    // onClose={handleClose}
                     text="Generate Report"
                     variant="contained"
                     style={{
@@ -67,6 +74,7 @@ function HomePage() {
                 title="Lunch"
                 button={
                   <Buttont
+                    onClick={handleOpen}
                     text="Generate Report"
                     variant="contained"
                     style={{

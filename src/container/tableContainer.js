@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Table from "../table/table";
-import { getTableData } from "../services/tableDataServices";
+import React, { useEffect, useState } from 'react';
+import Table from '../table/table';
+import { getTableData } from '../services/tableDataServices';
 export default function TableContainer() {
   const [tableRowsData, setTableRowsData] = useState([]);
   const fetchTableData = async () => {

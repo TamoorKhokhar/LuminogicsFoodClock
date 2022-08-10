@@ -1,15 +1,15 @@
-import * as React from "react";
-import { Box } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import MenuCard from "../menuCard";
+import * as React from 'react';
+import { Box } from '@mui/material';
+import Modal from '@mui/material/Modal';
+import MenuCard from '../menuCard';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "background.paper",
+  bgcolor: 'background.paper',
   boxShadow: 24,
   p: 0
 };
@@ -31,11 +31,11 @@ export default function BasicModal({ teaData, lunchData, title, src, image, butt
         <Box
           sx={{
             ...style,
-            width: "70vw",
+            width: '70vw',
             backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
           }}>
           {teaData}
           {lunchData}
