@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import Grid from "@mui/material/Grid";
-import Button from "../../components/button";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import theme from "../../theme/theme";
-import Typography from "@mui/material/Typography";
-import { ThemeProvider } from "@emotion/react";
-import Link from "@mui/material/Link";
-import SignInImage from "../../assets/images/SignIn.png";
-import { signUp } from "../../utils/services/tableDataServices";
-import { useDispatch } from "react-redux";
-import { sign_up } from "../../redux/action/actions";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import Grid from '@mui/material/Grid';
+import Button from '../../components/button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import theme from '../../theme/theme';
+import Typography from '@mui/material/Typography';
+import { ThemeProvider } from '@emotion/react';
+import Link from '@mui/material/Link';
+import SignInImage from '../../assets/images/SignIn.png';
+import { signUp } from '../../utils/services/tableDataServices';
+import { useDispatch } from 'react-redux';
+import { sign_up } from '../../redux/action/actions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,14 +32,11 @@ function SignUp() {
     const userData = await signUp(data);
     dispatch(sign_up(userData));
     console.log(userData);
-    if (userData?.metadata?.status === "SUCCESS") {
-      setTimeout(() => {
-        navigate(`/signIn`);
-      }, 3000);
-      toast("Sign Up Successfully!");
-      setUserName(""), setEmail(""), setPassword("");
+    if (userData?.metadata?.status === 'SUCCESS') {
+      navigate(`/signIn`);
+      setUserName(''), setEmail(''), setPassword('');
     } else {
-      toast("Error! Please Add Correct Data");
+      toast('Error! Please Add Correct Data');
     }
   };
 
@@ -49,44 +46,44 @@ function SignUp() {
         <Grid
           container
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            minHeight: "100vh",
-            backgroundColor: "#66DD8D"
+            display: 'flex',
+            justifyContent: 'center',
+            minHeight: '100vh',
+            backgroundColor: '#66DD8D'
           }}>
           <Grid
             item
             md={6}
             xs={10}
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              boxShadow: "2px 2px 5px 5px #243136",
-              borderRadius: "10px",
-              height: "max-content",
-              marginTop: "8rem",
-              backgroundColor: "#fafafa"
+              display: 'flex',
+              justifyContent: 'center',
+              boxShadow: '2px 2px 5px 5px #243136',
+              borderRadius: '10px',
+              height: 'max-content',
+              marginTop: '8rem',
+              backgroundColor: '#fafafa'
             }}>
             <Box
               sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                marginTop: "1rem",
-                width: "100%",
-                borderRadius: "5px",
-                height: "max-content"
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'column',
+                marginTop: '1rem',
+                width: '100%',
+                borderRadius: '5px',
+                height: 'max-content'
               }}>
               <Grid item>
-                <img sx={{ objectFit: "contain" }} src={SignInImage} alt="signInpage" />
+                <img sx={{ objectFit: 'contain' }} src={SignInImage} alt="signInpage" />
               </Grid>
               <Grid
                 item
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "90%"
+                  display: 'flex',
+                  flexDirection: 'column',
+                  width: '90%'
                 }}>
                 <Typography component="h1" variant="h5">
                   Sign Up Your Account
@@ -135,7 +132,7 @@ function SignUp() {
                     sx={{ mt: 2, mb: 2 }}
                     text="Sign Up"
                     onClick={submitForm}
-                    disabled={userName === "" || email === "" || password === ""}
+                    disabled={userName === '' || email === '' || password === ''}
                   />
                   <ToastContainer
                     position="top-right"
