@@ -1,4 +1,4 @@
-import { request } from "./common";
+import { request } from "./commonServices";
 
 export const signUp = async (body) => {
   try {

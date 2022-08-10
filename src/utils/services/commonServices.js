@@ -26,7 +26,6 @@ export const request = async (
       return res;
     }
   } catch (err) {
-    console.log(err);
     alert(NETWORK_ERROR);
     throw new Error(err);
   }
