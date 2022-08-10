@@ -6,10 +6,8 @@ import theme from "../theme/theme";
 import { useSelector } from "react-redux";
 import Buttons from "./buttonContainer";
 function LunchData() {
-  const user = useSelector((state) => {
-    const name = state?.signIn?.signIn?.userName;
-    return name ? name : "";
-  });
+  const name = useSelector((state) => state?.signIn?.signIn?.userName) || "";
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -43,7 +41,7 @@ function LunchData() {
             }}>
             <Typography variant="h4">Lunch Details</Typography>
             <Typography variant="p1">User Name:</Typography>
-            <TextField required id="outlined-required" label="Required" value={user} />
+            <TextField required id="outlined-required" label="Required" value={name} />
             <Typography variant="p1">Item Description:</Typography>
             <TextField required id="outlined-required" label="Required" />
             <Typography variant="p1">Rotti:</Typography>
