@@ -10,6 +10,7 @@ function MenuCard({ title, src, handleOpen }) {
         display: "flex",
         justifyContent: "center",
         marginBottom: "0.5rem",
+        alignItems: "center",
         position: "relative"
       }}>
       <Box

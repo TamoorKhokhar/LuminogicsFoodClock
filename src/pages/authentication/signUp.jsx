@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@emotion/react";
 import Link from "@mui/material/Link";
 import SignInImage from "../../assets/images/SignIn.png";
-import { signUp } from "../../utils/services/tableDataServices";
+import { signUp } from "../../utils/services/orderServices";
 import { useDispatch } from "react-redux";
 import { sign_up } from "../../redux/action/actions";
 import { ToastContainer, toast } from "react-toastify";
