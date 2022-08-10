@@ -146,13 +146,13 @@ function SignUp() {
                   />
                   <Grid container>
                     <Grid item xs>
-                      <Link href="/adminLogin" variant="body2">
-                        Sign In As Admin
+                      <Link href="signIn" variant="body2">
+                        Sign In As User
                       </Link>
                     </Grid>
                     <Grid item>
-                      <Link href="signIn" variant="body2">
-                        Sign In As User
+                      <Link href="  /adminLogin" variant="body2">
+                        Sign In As Admin
                       </Link>
                     </Grid>
                   </Grid>
