@@ -7,7 +7,8 @@ import { useSelector } from "react-redux";
 import Buttons from "./buttonContainer";
 function LunchData() {
   const user = useSelector((state) => {
-    return state?.signIn?.signIn[0]?.payload?.data?.user?.userName;
+    const name = state?.signIn?.signIn?.userName;
+    return name ? name : "";
   });
   return (
     <ThemeProvider theme={theme}>

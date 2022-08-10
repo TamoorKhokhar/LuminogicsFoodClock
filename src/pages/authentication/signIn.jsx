@@ -26,12 +26,13 @@ function SignIn() {
       password: password
     };
     const userData = await signIn(newUser);
-    dispatch(sign_In(userData));
-    if (userData?.metadata?.status === "SUCCESS") {
+    const { token = "", user = {} } = userData;
+    if (token) {
+      dispatch(sign_In(user));
+      localStorage.setItem("token", token);
       navigate("/homePage");
-      localStorage.setItem("token", userData.payload.data.token);
     } else {
-      toast(`User ${userData?.statusText}`);
+      toast(`User Not Found`);
     }
     setEmail("");
     setPassword("");

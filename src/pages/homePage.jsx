@@ -42,7 +42,6 @@ function HomePage() {
 
             <Grid
               container
-              xs={12}
               sx={{
                 display: "flex",
                 justifyContent: "center",
