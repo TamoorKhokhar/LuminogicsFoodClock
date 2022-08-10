@@ -12,3 +12,7 @@ code {
 .imageContainer img:hover{
 transform: scale(1.3) !important;
 }
+.super-app-theme--header{
+  background-color: #34474E;
+  color: white;
+}

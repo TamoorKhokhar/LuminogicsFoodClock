@@ -1,16 +1,16 @@
-import Header from "../components/header";
-import theme from "../theme/theme";
-import { ThemeProvider } from "@emotion/react";
-import { Grid, Typography } from "@mui/material";
-import TeaData from "../components/teaData";
-import LunchData from "../components/lunchData";
-import BasicModal from "../components/modals/basicModal";
-import MorningTeaImage from "../assets/images/MorningTea.png";
-import LunchImage from "../assets/images/Lunch.png";
-import EveningTeaImage from "../assets/images/EveningTea.png";
-import ModallunchImage from "../assets/images/ModalLunch.png";
-import ModalMorningTeaImage from "../assets/images/ModalMorningTea.png";
-import ModalEveningTeaImage from "../assets/images/ModalEveningtea.png";
+import Header from '../components/header';
+import theme from '../theme/theme';
+import { ThemeProvider } from '@emotion/react';
+import { Grid, Typography } from '@mui/material';
+import TeaData from '../components/teaData';
+import LunchData from '../components/lunchData';
+import BasicModal from '../components/modals/basicModal';
+import MorningTeaImage from '../assets/images/MorningTea.png';
+import LunchImage from '../assets/images/Lunch.png';
+import EveningTeaImage from '../assets/images/EveningTea.png';
+import ModallunchImage from '../assets/images/ModalLunch.png';
+import ModalMorningTeaImage from '../assets/images/ModalMorningTea.png';
+import ModalEveningTeaImage from '../assets/images/ModalEveningtea.png';
 function HomePage() {
   return (
     <>
@@ -19,19 +19,19 @@ function HomePage() {
         <Grid
           container
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "2rem"
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: '2rem'
           }}>
           <Grid
             item
             xs={12}
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column"
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column'
             }}>
             <Grid item xs={10}>
               <Typography variant="h2"> Start Your Day With Fresh Mind</Typography>
@@ -42,11 +42,9 @@ function HomePage() {
 
             <Grid
               container
-              md={12}
-              xs={10}
               sx={{
-                display: "flex",
-                justifyContent: "center"
+                display: 'flex',
+                justifyContent: 'center'
               }}>
               <BasicModal
                 teaData={<TeaData />}

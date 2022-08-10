@@ -39,7 +39,7 @@ const columns = [
     headerClassName: 'super-app-theme--header'
   }
 ];
-export default function TeaRecords({ heading, backgroundColor }) {
+export default function TableRecords({ heading }) {
   //   const [data, setData] = useState([]);
   //   const fetchData = async () => {
   //     const DataApi = await getTableData();
@@ -62,8 +62,7 @@ export default function TeaRecords({ heading, backgroundColor }) {
         sx={{
           width: '100%',
           border: '1px solid black ',
-          height: '500px',
-          backgroundColor: { backgroundColor }
+          height: '500px'
         }}>
         <CardContent>
           <Typography
@@ -81,8 +80,7 @@ export default function TeaRecords({ heading, backgroundColor }) {
           <Box
             sx={{
               display: 'flex',
-              flexDirection: 'column',
-              backgroundColor: '#fafafa !important'
+              flexDirection: 'column'
             }}>
             <div style={{ height: 400, width: '100%' }}>
               <DataGrid
