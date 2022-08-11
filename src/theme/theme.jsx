@@ -43,7 +43,8 @@ const theme = createTheme({
     },
     h5: {
       fontSize: "1.3rem",
-      textAlign: "center"
+      textAlign: "center",
+      fontWeight: 600
     },
     h6: {
       fontSize: "1.3rem",

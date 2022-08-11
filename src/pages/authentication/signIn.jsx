@@ -6,25 +6,47 @@ import Box from "@mui/material/Box";
 import theme from "../../theme/theme";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider } from "@emotion/react";
-import Header from "../../components/header";
 import Link from "@mui/material/Link";
 import SignInImage from "../../assets/images/SignIn.png";
+import { signIn } from "../../utils/services/orderServices";
+import { sign_In } from "../../redux/action/actions";
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  function submitForm(e) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const submitForm = async (e) => {
     e.preventDefault();
-  }
+    const newUser = {
+      email: email,
+      password: password
+    };
+    const userData = await signIn(newUser);
+    const { token = "", user = {} } = userData;
+    if (token) {
+      dispatch(sign_In(user));
+      localStorage.setItem("token", token);
+      navigate("/homePage");
+    } else {
+      toast(`User Not Found`);
+    }
+    setEmail("");
+    setPassword("");
+  };
   return (
     <>
-      <Header />
       <ThemeProvider theme={theme}>
         <Grid
           container
           sx={{
             display: "flex",
             justifyContent: "center",
-            minHeight: "100vh"
+            minHeight: "100vh",
+            backgroundColor: "#96BEF0"
           }}>
           <Grid
             item
@@ -33,10 +55,11 @@ function SignIn() {
             sx={{
               display: "flex",
               justifyContent: "center",
-              boxShadow: "5px 5px 10px 10px #ccc",
+              boxShadow: "2px 2px 5px 5px #243136",
               borderRadius: "10px",
               height: "max-content",
-              marginTop: "4rem"
+              marginTop: "8rem",
+              backgroundColor: "#fafafa"
             }}>
             <Box
               component="form"
@@ -98,9 +121,19 @@ function SignIn() {
                     disabled={email === "" || password === ""}
                     onClick={submitForm}
                   />
+                  <ToastContainer
+                    position="top-right"
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                  />
                   <Grid container>
                     <Grid item xs>
-                      <Link href="#" variant="body2">
+                      <Link href="/adminLogin" variant="body2">
                         Sign In As Admin
                       </Link>
                     </Grid>
