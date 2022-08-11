@@ -6,9 +6,10 @@ import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme/theme';
+import { useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
 // import { getTableData } from "../services/tableDataServices";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 const columns = [
   {
     field: 'index',
@@ -40,22 +41,17 @@ const columns = [
   }
 ];
 export default function TeaRecords({ heading, backgroundColor }) {
-  //   const [data, setData] = useState([]);
-  //   const fetchData = async () => {
-  //     const DataApi = await getTableData();
-  //     setData(DataApi);
-  //   };
-  //   useEffect(() => {
-  //     fetchData();
-  //   }, []);
-  //   const modifiedRows = data.map((element, index) => {
-  //     return {
-  //       ...element,
-  //       name: element.name,
-  //       index: index,
-  //       categories: element.categories
-  //     };
-  //   });
+  const data = useSelector((state) => state?.allOrder?.record[0]);
+  const modifiedRows = data.map((element, index) => {
+    return {
+      ...element,
+      userName: element.employeeName,
+      index: index,
+      teaVolume: element.teaVolume,
+      sugarQuantity: element.sugerQuantity
+    };
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <Card
@@ -86,12 +82,12 @@ export default function TeaRecords({ heading, backgroundColor }) {
             }}>
             <div style={{ height: 400, width: '100%' }}>
               <DataGrid
-                // key={(row) => (row.id = uuidv4())}
-                rows=""
+                key={(row) => (row.id = uuidv4())}
+                rows={modifiedRows}
                 columns={columns}
                 pageSize={5}
                 rowsPerPageOptions={[5]}
-                // getRowId={(row) => (row.id = uuidv4())}
+                getRowId={(row) => (row.id = uuidv4())}
               />
             </div>
           </Box>

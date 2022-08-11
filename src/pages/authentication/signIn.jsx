@@ -26,9 +26,10 @@ function SignIn() {
       password: password
     };
     const userData = await signIn(newUser);
-    dispatch(sign_In(userData));
-    if (userData?.metadata?.status === 'SUCCESS') {
-      localStorage.setItem('token', userData.payload.data.token);
+    const { token = '', user = {} } = userData;
+    if (token) {
+      dispatch(sign_In(user));
+      localStorage.setItem('token', token);
       navigate('/homePage');
     } else {
       toast(`User Not Found`);

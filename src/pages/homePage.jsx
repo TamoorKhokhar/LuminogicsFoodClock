@@ -8,10 +8,12 @@ import BasicModal from '../components/modals/basicModal';
 import MorningTeaImage from '../assets/images/MorningTea.png';
 import LunchImage from '../assets/images/Lunch.png';
 import EveningTeaImage from '../assets/images/EveningTea.png';
+import { useSelector } from 'react-redux';
 import ModallunchImage from '../assets/images/ModalLunch.png';
 import ModalMorningTeaImage from '../assets/images/ModalMorningTea.png';
 import ModalEveningTeaImage from '../assets/images/ModalEveningtea.png';
 function HomePage() {
+  const order = useSelector((state) => state?.userOrder[0]);
   return (
     <>
       <Header />
@@ -47,19 +49,40 @@ function HomePage() {
                 justifyContent: 'center'
               }}>
               <BasicModal
-                teaData={<TeaData />}
+                type="Morning-Tea"
+                teaData={
+                  <TeaData
+                    type="Morning-Tea"
+                    order={{
+                      _id: order?._id,
+                      sugarQuantity: order?.sugerQuantity,
+                      teaVolume: order?.teaVolume
+                    }}
+                  />
+                }
                 title=" Morning Tea"
                 src={MorningTeaImage}
                 image={ModalMorningTeaImage}
               />
               <BasicModal
-                lunchData={<LunchData />}
+                type="Lunch"
+                lunchData={<LunchData type="Lunch" />}
                 title="Lunch"
                 src={LunchImage}
                 image={ModallunchImage}
               />
               <BasicModal
-                teaData={<TeaData />}
+                type="Evening-Tea"
+                teaData={
+                  <TeaData
+                    type="Evening-Tea"
+                    order={{
+                      _id: order?._id,
+                      sugarQuantity: order?.sugerQuantity,
+                      teaVolume: order?.teaVolume
+                    }}
+                  />
+                }
                 title="Evening Tea"
                 src={EveningTeaImage}
                 image={ModalEveningTeaImage}

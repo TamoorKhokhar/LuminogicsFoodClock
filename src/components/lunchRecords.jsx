@@ -25,21 +25,28 @@ const columns = [
     headerClassName: 'super-app-theme--header'
   },
   {
-    field: 'teaVolume',
-    headerName: 'Tea Volume',
+    field: 'Item Description',
+    headerName: 'Item Description',
     flex: 1,
     key: 3,
     headerClassName: 'super-app-theme--header'
   },
   {
-    field: 'sugarQuantity',
-    headerName: 'Sugar Quantity',
+    field: 'Rotti:',
+    headerName: 'Rotti:',
+    flex: 1,
+    key: 3,
+    headerClassName: 'super-app-theme--header'
+  },
+  {
+    field: 'Amount Paid:',
+    headerName: 'Amount Paid:',
     flex: 1,
     key: 3,
     headerClassName: 'super-app-theme--header'
   }
 ];
-export default function TableRecords({ heading }) {
+export default function LunchRecords({ heading }) {
   //   const [data, setData] = useState([]);
   //   const fetchData = async () => {
   //     const DataApi = await getTableData();

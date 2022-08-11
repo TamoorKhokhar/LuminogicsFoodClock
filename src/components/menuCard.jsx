@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Box } from '@mui/material';
-function MenuCard({ title, src, handleOpen, button }) {
+function MenuCard({ title, src, handleOpen }) {
   return (
     <Grid
       item
@@ -44,17 +44,6 @@ function MenuCard({ title, src, handleOpen, button }) {
             padding: '4%'
           }}>
           <Typography variant="h3">{title}</Typography>
-        </Box>
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: '2%',
-            left: '18%',
-            right: '0',
-            width: '90%',
-            padding: '0'
-          }}>
-          {button}
         </Box>
       </Box>
     </Grid>

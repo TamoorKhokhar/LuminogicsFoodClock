@@ -10,13 +10,9 @@ import EveningTeaImage from '../assets/images/EveningTea.png';
 import ModallunchImage from '../assets/images/ModalLunch.png';
 import ModalMorningTeaImage from '../assets/images/ModalMorningTea.png';
 import ModalEveningTeaImage from '../assets/images/ModalEveningtea.png';
-import Buttont from '../components/button';
 import TeaRecords from '../components/teaRecords';
-import TableRecords from '../components/tableRecords';
+import LunchRecords from '../components/lunchRecords';
 function HomePage() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
   return (
     <>
       <Header />
@@ -39,10 +35,8 @@ function HomePage() {
               flexDirection: 'column'
             }}>
             <Grid item xs={10}>
-              <Typography variant="h2"> Start Your Day With Fresh Mind</Typography>
-              <Typography variant="subtitle1">
-                “Tell me what you eat, and I will tell you who you are.”
-              </Typography>
+              <Typography variant="h1">GENERATE REPORT</Typography>
+              <Typography variant="subtitle1">“By Clicking The Below Cards”</Typography>
             </Grid>
 
             <Grid
@@ -52,51 +46,24 @@ function HomePage() {
                 justifyContent: 'center'
               }}>
               <BasicModal
-                teaData={<TeaRecords heading="Morning Tea" />}
+                type="Morning-Tea"
+                teaData={<TeaRecords heading="Morning Tea" type="Morning-Tea" />}
                 title="Morning Tea"
                 open={open}
-                button={
-                  <Buttont
-                    handleOpen={handleOpen}
-                    // onClose={handleClose}
-                    text="Generate Report"
-                    variant="contained"
-                    style={{
-                      width: '70%'
-                    }}
-                  />
-                }
                 src={MorningTeaImage}
                 image={ModalMorningTeaImage}
               />
               <BasicModal
-                lunchData={<TableRecords heading="Lunch" />}
+                type="Lunch"
+                lunchData={<LunchRecords heading="Lunch" type="Lunch" />}
                 title="Lunch"
-                button={
-                  <Buttont
-                    onClick={handleOpen}
-                    text="Generate Report"
-                    variant="contained"
-                    style={{
-                      width: '70%'
-                    }}
-                  />
-                }
                 src={LunchImage}
                 image={ModallunchImage}
               />
               <BasicModal
-                teaData={<TeaRecords heading="Evening Tea" />}
+                type="Evening-Tea"
+                teaData={<TeaRecords heading="Evening Tea" type="Evening-Tea" />}
                 title="Evening Tea"
-                button={
-                  <Buttont
-                    text="Generate Report"
-                    variant="contained"
-                    style={{
-                      width: '70%'
-                    }}
-                  />
-                }
                 src={EveningTeaImage}
                 image={ModalEveningTeaImage}
               />
