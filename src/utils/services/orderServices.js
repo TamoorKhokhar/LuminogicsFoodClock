@@ -11,7 +11,6 @@ export const signUp = async (body) => {
 export const signIn = async (body) => {
   try {
     const response = await request("/api/users/log-in", "POST", body);
-    console.log("response", response);
     if (response?.metadata?.status === "SUCCESS") {
       return response?.payload?.data;
     }
