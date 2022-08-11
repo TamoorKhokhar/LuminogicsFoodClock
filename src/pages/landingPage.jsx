@@ -42,15 +42,11 @@ function LandingPage() {
                 borderRadius: "2rem",
                 background: "#34474E"
               }}>
-              {!localStorage.getItem("email") ? (
-                <Link to="/signIn" style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
-                  Get Started
-                </Link>
-              ) : (
-                <Link to="/adminDashboard" style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
-                  Get Started
-                </Link>
-              )}
+              <Link
+                to={!localStorage.getItem("email") ? "/signIn" : "/adminDashboard"}
+                style={{ color: "#FFFFFF", textDecorationLine: "none" }}>
+                Get Started
+              </Link>
             </Button>
           </Grid>
 

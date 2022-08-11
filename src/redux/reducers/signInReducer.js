@@ -1,5 +1,5 @@
 const initialState = {
-  signIn: []
+  signIn: {}
 };
 
 const signInReducer = (state = initialState, action) => {
@@ -7,7 +7,7 @@ const signInReducer = (state = initialState, action) => {
     case "signIn":
       return {
         ...state,
-        signIn: [...state.signIn, action.payload]
+        signIn: { ...state.signIn, ...action.payload }
       };
     default:
       return state;

@@ -31,7 +31,7 @@ function SignIn() {
       localStorage.setItem('token', userData.payload.data.token);
       navigate('/homePage');
     } else {
-      toast(`User ${userData?.statusText}`);
+      toast(`User Not Found`);
     }
     setEmail('');
     setPassword('');

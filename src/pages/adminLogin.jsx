@@ -20,7 +20,6 @@ function AdminLogin() {
     e.preventDefault();
     if (email === "faisal123@luminogics.com" && password === "faisal123") {
       localStorage.setItem("email", "faisal123@luminogics.com");
-      toast("Login Successfull!");
       navigate("/adminDashboard");
     } else if (email !== "faisal123@luminogics.com") {
       toast("Wrong Email Address");

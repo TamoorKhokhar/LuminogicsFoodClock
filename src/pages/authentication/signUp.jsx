@@ -31,7 +31,6 @@ function SignUp() {
     };
     const userData = await signUp(data);
     dispatch(sign_up(userData));
-    console.log(userData);
     if (userData?.metadata?.status === 'SUCCESS') {
       navigate(`/signIn`);
       setUserName(''), setEmail(''), setPassword('');
