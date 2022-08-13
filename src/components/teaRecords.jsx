@@ -8,7 +8,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme/theme';
 import { useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
-// import { getTableData } from "../services/tableDataServices";
+// import { getTableData } from '../services/tableDataServices';
 import { v4 as uuidv4 } from 'uuid';
 const columns = [
   {
@@ -42,7 +42,7 @@ const columns = [
 ];
 export default function TeaRecords({ heading, backgroundColor }) {
   const data = useSelector((state) => state?.allOrder?.record[0]);
-  const modifiedRows = data.map((element, index) => {
+  const modifiedRows = data?.map((element, index) => {
     return {
       ...element,
       userName: element.employeeName,
