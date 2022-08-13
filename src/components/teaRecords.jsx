@@ -40,18 +40,30 @@ const columns = [
     headerClassName: 'super-app-theme--header'
   }
 ];
-export default function TeaRecords({ heading, backgroundColor }) {
-  const data = useSelector((state) => state?.allOrder?.record[0]);
-  const modifiedRows = data?.map((element, index) => {
-    return {
-      ...element,
-      userName: element.employeeName,
-      index: index,
-      teaVolume: element.teaVolume,
-      sugarQuantity: element.sugerQuantity
-    };
-  });
-
+export default function TeaRecords({ heading, backgroundColor, type }) {
+  if (type === 'Morning-Tea') {
+    const data = useSelector((state) => state?.allOrder?.record[0]);
+    var modifiedRows = data?.map((element, index) => {
+      return {
+        ...element,
+        userName: element.employeeName,
+        index: index,
+        teaVolume: element.teaVolume,
+        sugarQuantity: element.sugerQuantity
+      };
+    });
+  } else if (type === 'Evening-Tea') {
+    const result = useSelector((state) => state?.evening?.record[0]);
+    modifiedRows = result?.map((element, index) => {
+      return {
+        ...element,
+        userName: element?.employeeName,
+        index: index,
+        teaVolume: element?.teaVolume,
+        sugarQuantity: element?.sugerQuantity
+      };
+    });
+  }
   return (
     <ThemeProvider theme={theme}>
       <Card

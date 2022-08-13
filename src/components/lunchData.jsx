@@ -3,20 +3,66 @@ import { Grid, Typography, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { ThemeProvider } from '@emotion/react';
 import theme from '../theme/theme';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { orderData } from '../utils/services/tableDataServices';
 import Btn from './button';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteOrder } from '../utils/services/tableDataServices';
+import { updateOrder } from '../utils/services/tableDataServices';
 import EditIcon from '@mui/icons-material/Edit';
-import { useSelector } from 'react-redux/es/exports';
-function LunchData() {
-  const [userName, setUserName] = useState('');
+import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { lunchOrderItem, lunchOrderDelete } from '../redux/action/actions';
+function LunchData({ type, order }) {
   const [items, setItems] = useState('');
   const [rotti, setRotti] = useState('');
   const [amountPaid, setAmountPaid] = useState('');
-  const name = useSelector((state) => state?.signIn?.signIn?.userName) || '';
-  const SubmitForm = (e) => {
+  const user = useSelector((state) => state?.signIn?.signIn) || '';
+  const [userName, setUserName] = useState(user?.userName);
+  const dispatch = useDispatch();
+  const oId = useSelector((state) => state?.lunchOrder[0]);
+  useEffect(() => {
+    if (order) {
+      setItems(order?.items);
+      setRotti(order?.rotti);
+      setAmountPaid(order?.amountPaid);
+    }
+  }, [order]);
+
+  const SubmitForm = async (e) => {
     e.preventDefault();
+    // let date = new Date().toLocaleString('en-US', {
+    //   hourCycle: 'h24'
+    // });
+    // date = date + 'Z';
+    let date = '2022-08-12T12:00:00';
+    const newOrder = {
+      email: user?.email,
+      employeeName: user?.userName,
+      extras: items,
+      rotiQuantity: rotti,
+      amount: amountPaid,
+      orderDate: date,
+      orderType: type
+    };
+    await orderData(newOrder);
+  };
+  const handleUpdateOrder = async (e) => {
+    e.preventDefault();
+    const newOrder = {
+      _id: oId?._id,
+      extras: items,
+      rotiQuantity: rotti,
+      amount: amountPaid
+    };
+    const order = await updateOrder(newOrder);
+    dispatch(lunchOrderItem(order));
+  };
+
+  const handleDeleteOrder = async (e) => {
+    e.preventDefault();
+    const order = await deleteOrder(oId?._id);
+    dispatch(lunchOrderDelete(order));
   };
   return (
     <ThemeProvider theme={theme}>
@@ -28,8 +74,6 @@ function LunchData() {
           minHeight: 'max-content'
         }}>
         <Box
-          component="form"
-          onSubmit={SubmitForm}
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -41,6 +85,8 @@ function LunchData() {
             height: 'max-content'
           }}>
           <Box
+            component="form"
+            onSubmit={SubmitForm}
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -53,7 +99,7 @@ function LunchData() {
               required
               id="outlined-required"
               label="Required"
-              value={name}
+              value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
             <Typography variant="p1">Item Description:</Typography>
@@ -91,15 +137,22 @@ function LunchData() {
                   text="Delete"
                   icon={<DeleteIcon />}
                   variant="Contained"
+                  onClick={handleDeleteOrder}
                   style={{ backgroundColor: 'red', color: 'white' }}
                 />
               </Grid>
               <Grid item xs={12} md={3} lg={2}>
-                <Btn text="Edit" icon={<EditIcon />} variant="outlined" />
+                <Btn
+                  text="Edit"
+                  icon={<EditIcon />}
+                  variant="outlined"
+                  onClick={handleUpdateOrder}
+                />
               </Grid>
               <Grid item xs={12} md={3} lg={2}>
                 <Btn
                   text="Order"
+                  onClick={SubmitForm}
                   icon={<CheckIcon />}
                   variant="contained"
                   disabled={userName === '' || items === '' || rotti === '' || amountPaid === ''}

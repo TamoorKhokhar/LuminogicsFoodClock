@@ -12,7 +12,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteOrder } from '../utils/services/tableDataServices';
-import { user_Order } from '../redux/action/actions';
+import {
+  user_Order,
+  order_delete,
+  eveningOrderItem,
+  eveningOrderDelete
+} from '../redux/action/actions';
 function TeaData({ type, order }) {
   const [sugarQuantity, setSugarQuantity] = useState('');
   const [teaVolume, setTeaVolume] = useState('');
@@ -20,6 +25,8 @@ function TeaData({ type, order }) {
   const [userName, setUserName] = useState(user?.userName);
   const dispatch = useDispatch();
   const orderId = useSelector((state) => state?.userOrder[0]);
+  const oId = useSelector((state) => state?.eveningOrder[0]);
+  console.log(oId, 'orderrr000');
   useEffect(() => {
     if (order) {
       setSugarQuantity(order?.sugarQuantity);
@@ -29,10 +36,11 @@ function TeaData({ type, order }) {
 
   const SubmitForm = async (e) => {
     e.preventDefault();
-    let date = new Date().toLocaleString('en-US', {
-      hourCycle: 'h24'
-    });
-    date = date + 'Z';
+    // let date = new Date().toLocaleString('en-US', {
+    //   hourCycle: 'h24'
+    // });
+    // date = date + 'Z';
+    let date = '2022-08-12T09:00:00';
     e.preventDefault();
     const newOrder = {
       email: user?.email,
@@ -46,19 +54,37 @@ function TeaData({ type, order }) {
   };
   const handleUpdateOrder = async (e) => {
     e.preventDefault();
-    const newOrder = {
-      _id: orderId?._id,
-      sugerQuantity: sugarQuantity,
-      teaVolume: teaVolume
-    };
-    const order = await updateOrder(newOrder);
-    dispatch(user_Order(order));
+    if (type === 'Morning-Tea') {
+      const newOrder = {
+        _id: orderId?._id,
+        sugerQuantity: sugarQuantity,
+        teaVolume: teaVolume
+      };
+      const order = await updateOrder(newOrder);
+      dispatch(user_Order(order));
+    } else if (type === 'Evening-Tea') {
+      const newOrder = {
+        _id: oId?._id,
+        sugerQuantity: sugarQuantity,
+        teaVolume: teaVolume
+      };
+      const order = await updateOrder(newOrder);
+      dispatch(eveningOrderItem(order));
+    }
   };
   const handleDeleteOrder = async (e) => {
     e.preventDefault();
-    const order = await deleteOrder(orderId?._id);
-    dispatch(user_Order(order));
+    if (type === 'Morning-Tea') {
+      const order = await deleteOrder(orderId?._id);
+      dispatch(order_delete(order, orderId?._id));
+    } else if (type === 'Evening-Tea') {
+      const order = await deleteOrder(oId?._id);
+      dispatch(eveningOrderDelete(order, oId?._id));
+    }
+    setSugarQuantity('');
+    setTeaVolume('Half cup');
   };
+
   return (
     <ThemeProvider theme={theme}>
       <Grid

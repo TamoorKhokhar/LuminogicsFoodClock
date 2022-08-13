@@ -14,6 +14,9 @@ import ModalMorningTeaImage from '../assets/images/ModalMorningTea.png';
 import ModalEveningTeaImage from '../assets/images/ModalEveningtea.png';
 function HomePage() {
   const order = useSelector((state) => state?.userOrder[0]);
+  const lunchh = useSelector((state) => state?.lunchOrder[0]);
+  const tea = useSelector((state) => state?.eveningOrder[0]);
+  console.log(lunchh, 'Lunch');
   return (
     <>
       <Header />
@@ -66,7 +69,17 @@ function HomePage() {
               />
               <BasicModal
                 type="Lunch"
-                lunchData={<LunchData type="Lunch" />}
+                lunchData={
+                  <LunchData
+                    type="Lunch"
+                    order={{
+                      _id: lunchh?._id,
+                      items: lunchh?.extras,
+                      rotti: lunchh?.rotiQuantity,
+                      amountPaid: lunchh?.amount
+                    }}
+                  />
+                }
                 title="Lunch"
                 src={LunchImage}
                 image={ModallunchImage}
@@ -77,9 +90,9 @@ function HomePage() {
                   <TeaData
                     type="Evening-Tea"
                     order={{
-                      _id: order?._id,
-                      sugarQuantity: order?.sugerQuantity,
-                      teaVolume: order?.teaVolume
+                      _id: tea?._id,
+                      sugarQuantity: tea?.sugerQuantity,
+                      teaVolume: tea?.teaVolume
                     }}
                   />
                 }
