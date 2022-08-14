@@ -52,6 +52,7 @@ function LunchData({ type, order }) {
       setItems('');
       setRotti('');
       setAmountPaid('');
+      location.reload();
     } else {
       toast(result?.response?.data?.metadata?.message);
     }
@@ -67,6 +68,7 @@ function LunchData({ type, order }) {
     const orders = await updateOrder(newOrder);
     if (orders?.status === 200) {
       toast(orders?.data?.metadata?.message);
+      location.reload();
     } else {
       toast(orders?.response?.data?.metadata?.message);
     }
@@ -81,6 +83,7 @@ function LunchData({ type, order }) {
       setItems('');
       setRotti('');
       setAmountPaid('');
+      location.reload();
     } else {
       toast(lunchOrder?.response?.data?.metadata?.message);
     }
@@ -134,6 +137,7 @@ function LunchData({ type, order }) {
             <Typography variant="p1">Rotti:</Typography>
             <TextField
               required
+              inputProps={{ min: 0 }}
               id="outlined-required"
               label="Required"
               type="number"
@@ -143,6 +147,7 @@ function LunchData({ type, order }) {
             <Typography variant="p1">Amount Paid:</Typography>
             <TextField
               required
+              inputProps={{ min: 0 }}
               id="outlined-required"
               label="Required"
               type="number"

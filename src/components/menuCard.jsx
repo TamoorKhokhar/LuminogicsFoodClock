@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Box } from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
+
 function MenuCard({ title, src, handleOpen, disabled }) {
   return (
     <Grid
@@ -33,13 +33,7 @@ function MenuCard({ title, src, handleOpen, disabled }) {
             cursor: 'pointer',
             overflow: 'hidden'
           }}
-          onClick={
-            disabled
-              ? () => {
-                  toast("You Can't Place Order After Time!");
-                }
-              : handleOpen
-          }
+          onClick={disabled ? () => {} : handleOpen}
         />
         <Box
           sx={{
@@ -52,16 +46,6 @@ function MenuCard({ title, src, handleOpen, disabled }) {
           }}>
           <Typography variant="h3">{title}</Typography>
         </Box>
-        <ToastContainer
-          position="top-right"
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
       </Box>
     </Grid>
   );

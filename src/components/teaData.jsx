@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteOrder } from '../utils/services/tableDataServices';
 import { user_Order, eveningOrderItem } from '../redux/action/actions';
 import { ToastContainer, toast } from 'react-toastify';
-function TeaData({ type, order, setOpen }) {
+function TeaData({ type, order }) {
   const [sugarQuantity, setSugarQuantity] = useState('');
   const [teaVolume, setTeaVolume] = useState('');
   const user = useSelector((state) => state?.signIn?.signIn) || '';
@@ -49,7 +49,7 @@ function TeaData({ type, order, setOpen }) {
       toast('Order placed Successfully!');
       setSugarQuantity('');
       setTeaVolume('');
-      setOpen(false);
+      location.reload();
     } else {
       toast(result?.response?.data?.metadata?.message);
     }
@@ -65,6 +65,7 @@ function TeaData({ type, order, setOpen }) {
       const morningOrder = await updateOrder(newOrder);
       if (morningOrder?.status === 200) {
         toast(morningOrder?.data?.metadata?.message);
+        location.reload();
       } else {
         toast(morningOrder?.response?.data?.metadata?.message);
       }
@@ -78,6 +79,7 @@ function TeaData({ type, order, setOpen }) {
       const orders = await updateOrder(newOrder);
       if (orders?.status === 200) {
         toast(orders?.data?.metadata?.message);
+        location.reload();
       } else {
         toast(orders?.response?.data?.metadata?.message);
       }
@@ -92,6 +94,7 @@ function TeaData({ type, order, setOpen }) {
         toast(order?.data?.metadata?.message);
         setSugarQuantity('');
         setTeaVolume('');
+        location.reload();
       } else {
         toast(order?.response?.data?.metadata?.message);
       }
@@ -102,6 +105,7 @@ function TeaData({ type, order, setOpen }) {
         toast(order?.data?.metadata?.message);
         setSugarQuantity('');
         setTeaVolume('');
+        location.reload();
       } else {
         toast(order?.response?.data?.metadata?.message);
       }
@@ -151,6 +155,7 @@ function TeaData({ type, order, setOpen }) {
             <Typography variant="p1">Sugar Quantatity:</Typography>
             <TextField
               required
+              inputProps={{ min: 0, max: 10 }}
               id="outlined-required"
               label="Required"
               type="number"
