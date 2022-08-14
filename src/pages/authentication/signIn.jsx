@@ -17,15 +17,18 @@ import { useNavigate } from 'react-router-dom';
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const submitForm = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const newUser = {
       email: email,
       password: password
     };
     const userData = await signIn(newUser);
+
     const { token = '', user = {} } = userData;
     if (token) {
       dispatch(sign_In(user));
@@ -36,6 +39,7 @@ function SignIn() {
     }
     setEmail('');
     setPassword('');
+    setLoader(false);
   };
   return (
     <>
@@ -112,6 +116,7 @@ function SignIn() {
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                   />
+
                   <Button
                     type="submit"
                     fullWidth
@@ -120,7 +125,9 @@ function SignIn() {
                     text="Sign In"
                     disabled={email === '' || password === ''}
                     onClick={submitForm}
+                    loader={loader}
                   />
+
                   <ToastContainer
                     position="top-right"
                     hideProgressBar={false}

@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import { ClipLoader } from 'react-spinners';
 
-export default function Buttont({ disabled, style, variant, icon, onClick, text }) {
+export default function Buttont({ disabled, style, variant, icon, onClick, text, loader }) {
   return (
     <Button
       disabled={disabled}
@@ -10,7 +11,7 @@ export default function Buttont({ disabled, style, variant, icon, onClick, text 
       variant={variant}
       endIcon={icon}
       onClick={onClick}>
-      {text}
+      {loader ? <ClipLoader color={'#fafafa'} size={15} /> : text}
     </Button>
   );
 }

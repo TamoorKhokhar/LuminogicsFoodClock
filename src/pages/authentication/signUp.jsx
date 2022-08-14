@@ -19,24 +19,28 @@ function SignUp() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const submitForm = async (e) => {
     e.preventDefault();
+    setLoader(true);
     const data = {
       userName: userName,
       email: email,
       password: password
     };
     const userData = await signUp(data);
-    dispatch(sign_up(userData));
-    if (userData?.metadata?.status === 'SUCCESS') {
+    if (userData?.status === 200) {
       navigate(`/signIn`);
       setUserName(''), setEmail(''), setPassword('');
     } else {
-      toast('Error! Please Add Correct Data');
+      toast(userData?.response?.data?.metadata?.message);
     }
+
+    dispatch(sign_up(userData));
+    setLoader(false);
   };
 
   return (
@@ -131,6 +135,7 @@ function SignUp() {
                     sx={{ mt: 2, mb: 2 }}
                     text="Sign Up"
                     onClick={submitForm}
+                    loader={loader}
                     disabled={userName === '' || email === '' || password === ''}
                   />
                   <ToastContainer

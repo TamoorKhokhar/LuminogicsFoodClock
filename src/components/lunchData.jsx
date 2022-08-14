@@ -13,6 +13,7 @@ import { updateOrder } from '../utils/services/tableDataServices';
 import EditIcon from '@mui/icons-material/Edit';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { lunchOrderItem, lunchOrderDelete } from '../redux/action/actions';
+import { ToastContainer, toast } from 'react-toastify';
 function LunchData({ type, order }) {
   const [items, setItems] = useState('');
   const [rotti, setRotti] = useState('');
@@ -31,11 +32,11 @@ function LunchData({ type, order }) {
 
   const SubmitForm = async (e) => {
     e.preventDefault();
-    // let date = new Date().toLocaleString('en-US', {
-    //   hourCycle: 'h24'
-    // });
-    // date = date + 'Z';
-    let date = '2022-08-12T12:00:00';
+    let date = new Date().toLocaleString('en-US', {
+      hourCycle: 'h24'
+    });
+    date = date + 'Z';
+    // let date = '2022-08-13T09:00:00'; this line is for testing
     const newOrder = {
       email: user?.email,
       employeeName: user?.userName,
@@ -45,7 +46,12 @@ function LunchData({ type, order }) {
       orderDate: date,
       orderType: type
     };
-    await orderData(newOrder);
+    const result = await orderData(newOrder);
+    if (result?.status === 200) {
+      toast('Order placed Successfully!');
+    } else {
+      toast(result?.response?.data?.metadata?.message);
+    }
   };
   const handleUpdateOrder = async (e) => {
     e.preventDefault();
@@ -56,12 +62,22 @@ function LunchData({ type, order }) {
       amount: amountPaid
     };
     const order = await updateOrder(newOrder);
+    if (order?.status === 200) {
+      toast('Order updated!');
+    } else {
+      toast(order?.response?.data?.metadata?.message);
+    }
     dispatch(lunchOrderItem(order));
   };
 
   const handleDeleteOrder = async (e) => {
     e.preventDefault();
     const order = await deleteOrder(oId?._id);
+    if (order?.status === 200) {
+      toast('Order Deleted Successfully!');
+    } else {
+      toast(order?.response?.data?.metadata?.message);
+    }
     dispatch(lunchOrderDelete(order));
   };
   return (
@@ -158,6 +174,16 @@ function LunchData({ type, order }) {
                   disabled={userName === '' || items === '' || rotti === '' || amountPaid === ''}
                 />
               </Grid>
+              <ToastContainer
+                position="top-right"
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
             </Grid>
           </Box>
         </Box>

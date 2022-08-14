@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Box } from '@mui/material';
-function MenuCard({ title, src, handleOpen }) {
+function MenuCard({ title, src, handleOpen, disabled }) {
   return (
     <Grid
       item
@@ -33,6 +33,7 @@ function MenuCard({ title, src, handleOpen }) {
             overflow: 'hidden'
           }}
           onClick={handleOpen}
+          disabled={disabled}
         />
         <Box
           sx={{

@@ -8,15 +8,26 @@ import BasicModal from '../components/modals/basicModal';
 import MorningTeaImage from '../assets/images/MorningTea.png';
 import LunchImage from '../assets/images/Lunch.png';
 import EveningTeaImage from '../assets/images/EveningTea.png';
+import { morningTeaStart } from '../constants/appConstants';
+import { morningTeaEnd } from '../constants/appConstants';
+import { lunchStart } from '../constants/appConstants';
+import { lunchEnd } from '../constants/appConstants';
+import { eveningTeaStart } from '../constants/appConstants';
+import { eveningTeaEnd } from '../constants/appConstants';
 import { useSelector } from 'react-redux';
 import ModallunchImage from '../assets/images/ModalLunch.png';
 import ModalMorningTeaImage from '../assets/images/ModalMorningTea.png';
 import ModalEveningTeaImage from '../assets/images/ModalEveningtea.png';
 function HomePage() {
+  function inTime(start, end) {
+    var now = new Date();
+    var time = now.getHours() * 60 + now.getMinutes();
+    return time >= start && time < end;
+  }
   const order = useSelector((state) => state?.userOrder[0]);
   const lunchh = useSelector((state) => state?.lunchOrder[0]);
   const tea = useSelector((state) => state?.eveningOrder[0]);
-  console.log(lunchh, 'Lunch');
+
   return (
     <>
       <Header />
@@ -52,6 +63,7 @@ function HomePage() {
                 justifyContent: 'center'
               }}>
               <BasicModal
+                disabled={!inTime(morningTeaStart, morningTeaEnd)}
                 type="Morning-Tea"
                 teaData={
                   <TeaData
@@ -68,6 +80,7 @@ function HomePage() {
                 image={ModalMorningTeaImage}
               />
               <BasicModal
+                disabled={!inTime(lunchStart, lunchEnd)}
                 type="Lunch"
                 lunchData={
                   <LunchData
@@ -85,6 +98,7 @@ function HomePage() {
                 image={ModallunchImage}
               />
               <BasicModal
+                disabled={!inTime(eveningTeaStart, eveningTeaEnd)}
                 type="Evening-Tea"
                 teaData={
                   <TeaData

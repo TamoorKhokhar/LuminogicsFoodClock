@@ -24,7 +24,16 @@ const style = {
   p: 0
 };
 
-export default function BasicModal({ teaData, lunchData, title, src, image, button, type }) {
+export default function BasicModal({
+  teaData,
+  lunchData,
+  title,
+  src,
+  image,
+  button,
+  type,
+  disabled
+}) {
   const user = useSelector((state) => state?.signIn?.signIn) || '';
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
@@ -43,7 +52,7 @@ export default function BasicModal({ teaData, lunchData, title, src, image, butt
           }
         })
         .catch((err) => {
-          console.log(err);
+          return err;
         });
       useDispatch;
     };
@@ -63,7 +72,7 @@ export default function BasicModal({ teaData, lunchData, title, src, image, butt
           }
         })
         .catch((err) => {
-          console.log(err);
+          return err;
         });
       useDispatch;
     };
@@ -73,7 +82,14 @@ export default function BasicModal({ teaData, lunchData, title, src, image, butt
 
   return (
     <>
-      <MenuCard handleOpen={handleOpen} title={title} src={src} button={button} type={type} />
+      <MenuCard
+        disabled={disabled}
+        handleOpen={handleOpen}
+        title={title}
+        src={src}
+        button={button}
+        type={type}
+      />
       {openModal && (
         <Modal
           open={open}

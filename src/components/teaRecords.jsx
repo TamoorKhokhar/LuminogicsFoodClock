@@ -8,7 +8,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme/theme';
 import { useSelector } from 'react-redux';
 import Typography from '@mui/material/Typography';
-// import { getTableData } from '../services/tableDataServices';
 import { v4 as uuidv4 } from 'uuid';
 const columns = [
   {
@@ -43,26 +42,32 @@ const columns = [
 export default function TeaRecords({ heading, backgroundColor, type }) {
   if (type === 'Morning-Tea') {
     const data = useSelector((state) => state?.allOrder?.record[0]);
-    var modifiedRows = data?.map((element, index) => {
-      return {
-        ...element,
-        userName: element.employeeName,
-        index: index,
-        teaVolume: element.teaVolume,
-        sugarQuantity: element.sugerQuantity
-      };
-    });
+    var modifiedRows =
+      data.length > 0
+        ? data?.map((element, index) => {
+            return {
+              ...element,
+              userName: element.employeeName,
+              index: index + 1,
+              teaVolume: element.teaVolume,
+              sugarQuantity: element.sugerQuantity
+            };
+          })
+        : '';
   } else if (type === 'Evening-Tea') {
     const result = useSelector((state) => state?.evening?.record[0]);
-    modifiedRows = result?.map((element, index) => {
-      return {
-        ...element,
-        userName: element?.employeeName,
-        index: index,
-        teaVolume: element?.teaVolume,
-        sugarQuantity: element?.sugerQuantity
-      };
-    });
+    modifiedRows =
+      result.length > 0
+        ? result?.map((element, index) => {
+            return {
+              ...element,
+              userName: element?.employeeName,
+              index: index + 1,
+              teaVolume: element?.teaVolume,
+              sugarQuantity: element?.sugerQuantity
+            };
+          })
+        : '';
   }
   return (
     <ThemeProvider theme={theme}>

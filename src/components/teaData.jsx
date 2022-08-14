@@ -18,6 +18,7 @@ import {
   eveningOrderItem,
   eveningOrderDelete
 } from '../redux/action/actions';
+import { ToastContainer, toast } from 'react-toastify';
 function TeaData({ type, order }) {
   const [sugarQuantity, setSugarQuantity] = useState('');
   const [teaVolume, setTeaVolume] = useState('');
@@ -26,7 +27,6 @@ function TeaData({ type, order }) {
   const dispatch = useDispatch();
   const orderId = useSelector((state) => state?.userOrder[0]);
   const oId = useSelector((state) => state?.eveningOrder[0]);
-  console.log(oId, 'orderrr000');
   useEffect(() => {
     if (order) {
       setSugarQuantity(order?.sugarQuantity);
@@ -36,12 +36,12 @@ function TeaData({ type, order }) {
 
   const SubmitForm = async (e) => {
     e.preventDefault();
-    // let date = new Date().toLocaleString('en-US', {
-    //   hourCycle: 'h24'
-    // });
-    // date = date + 'Z';
-    let date = '2022-08-12T09:00:00';
-    e.preventDefault();
+    let date = new Date().toLocaleString('en-US', {
+      hourCycle: 'h24'
+    });
+    date = date + 'Z';
+    // let date = '2022-08-14T01:00:00'; this line is for testing
+
     const newOrder = {
       email: user?.email,
       employeeName: user?.userName,
@@ -50,7 +50,14 @@ function TeaData({ type, order }) {
       orderDate: date,
       orderType: type
     };
-    await orderData(newOrder);
+    const result = await orderData(newOrder);
+    if (result?.status === 200) {
+      toast('Order placed Successfully!');
+      setSugarQuantity('');
+      setTeaVolume('');
+    } else {
+      toast(result?.response?.data?.metadata?.message);
+    }
   };
   const handleUpdateOrder = async (e) => {
     e.preventDefault();
@@ -61,6 +68,13 @@ function TeaData({ type, order }) {
         teaVolume: teaVolume
       };
       const order = await updateOrder(newOrder);
+      if (order?.status === 200) {
+        toast('Order updated');
+        setSugarQuantity('');
+        setTeaVolume('');
+      } else {
+        toast(order?.response?.data?.metadata?.message);
+      }
       dispatch(user_Order(order));
     } else if (type === 'Evening-Tea') {
       const newOrder = {
@@ -69,6 +83,13 @@ function TeaData({ type, order }) {
         teaVolume: teaVolume
       };
       const order = await updateOrder(newOrder);
+      if (order?.status === 200) {
+        toast('Order updated Successfully!');
+        setSugarQuantity('');
+        setTeaVolume('');
+      } else {
+        toast(order?.response?.data?.metadata?.message);
+      }
       dispatch(eveningOrderItem(order));
     }
   };
@@ -76,9 +97,23 @@ function TeaData({ type, order }) {
     e.preventDefault();
     if (type === 'Morning-Tea') {
       const order = await deleteOrder(orderId?._id);
+      if (order?.status === 200) {
+        toast('Order Deleted Successfully!');
+        setSugarQuantity('');
+        setTeaVolume('');
+      } else {
+        toast(order?.response?.data?.metadata?.message);
+      }
       dispatch(order_delete(order, orderId?._id));
     } else if (type === 'Evening-Tea') {
       const order = await deleteOrder(oId?._id);
+      if (order?.status === 200) {
+        toast('Order Deleted Successfully!');
+        setSugarQuantity('');
+        setTeaVolume('');
+      } else {
+        toast(order?.response?.data?.metadata?.message);
+      }
       dispatch(eveningOrderDelete(order, oId?._id));
     }
     setSugarQuantity('');
@@ -161,14 +196,18 @@ function TeaData({ type, order }) {
                 />
               </Grid>
               <Grid item xs={12} md={3} lg={2}>
-                <Btn
-                  text="Order"
-                  icon={<CheckIcon />}
-                  onClick={SubmitForm}
-                  variant="contained"
-                  // disabled={userName === '' || sugarQuantity === '' || teaVolume === ''}
-                />
-              </Grid>
+                <Btn text="Order" icon={<CheckIcon />} onClick={SubmitForm} variant="contained" />
+              </Grid>{' '}
+              <ToastContainer
+                position="top-right"
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
             </Grid>
           </Box>
         </Box>

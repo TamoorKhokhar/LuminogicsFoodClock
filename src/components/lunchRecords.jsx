@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme/theme';
 import Typography from '@mui/material/Typography';
@@ -48,16 +49,25 @@ const columns = [
 ];
 export default function LunchRecords({ heading }) {
   const result = useSelector((state) => state?.lunch?.record[0]);
-  var modifiedRows = result?.map((element, index) => {
+  const sumRotti = result?.map((el) => {
     return {
-      ...element,
-      userName: element?.employeeName,
-      index: index,
-      itemDescription: element?.extras,
-      rotti: element?.rotiQuantity,
-      amountPaid: element?.amount
+      sumValue: el?.rotiQuantity
     };
   });
+  const totalValue = sumRotti.reduce((a, v) => (a = a + v.sumValue), 0);
+  var modifiedRows =
+    result.length > 0
+      ? result?.map((element, index) => {
+          return {
+            ...element,
+            userName: element?.employeeName,
+            index: index,
+            itemDescription: element?.extras,
+            rotti: element?.rotiQuantity,
+            amountPaid: element?.amount
+          };
+        })
+      : '';
   return (
     <ThemeProvider theme={theme}>
       <Card
@@ -78,6 +88,9 @@ export default function LunchRecords({ heading }) {
             }}>
             <b> {heading} </b>
           </Typography>
+          <Grid item>
+            <b>Total Rotti : {totalValue}</b>
+          </Grid>
           <Divider />
           <Box
             sx={{
