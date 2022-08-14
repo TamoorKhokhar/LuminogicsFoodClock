@@ -9,7 +9,7 @@ import LunchImage from '../assets/images/Lunch.png';
 import {
   morningResultStart,
   morningResultEnd,
-  lunchResultStart,
+  lunchEnd,
   lunchResultEnd,
   eveningResultStart,
   eveningResultEnd
@@ -48,7 +48,7 @@ function HomePage() {
               flexDirection: 'column'
             }}>
             <Grid item xs={10}>
-              <Typography variant="h1">GENERATE REPORT</Typography>
+              <Typography variant="h1">GENERATE REPORT!!</Typography>
               <Typography variant="subtitle1">“By Clicking The Below Cards”</Typography>
             </Grid>
 
@@ -73,7 +73,7 @@ function HomePage() {
                 title="Lunch"
                 src={LunchImage}
                 image={ModallunchImage}
-                disabled={!inTime(lunchResultStart, lunchResultEnd)}
+                disabled={!inTime(lunchEnd, lunchResultEnd)}
               />
               <BasicModal
                 type="Evening-Tea"

@@ -12,7 +12,7 @@ import { deleteOrder } from '../utils/services/tableDataServices';
 import { updateOrder } from '../utils/services/tableDataServices';
 import EditIcon from '@mui/icons-material/Edit';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { lunchOrderItem, lunchOrderDelete } from '../redux/action/actions';
+import { lunchOrderItem } from '../redux/action/actions';
 import { ToastContainer, toast } from 'react-toastify';
 function LunchData({ type, order }) {
   const [items, setItems] = useState('');
@@ -23,7 +23,7 @@ function LunchData({ type, order }) {
   const dispatch = useDispatch();
   const oId = useSelector((state) => state?.lunchOrder[0]);
   useEffect(() => {
-    if (order) {
+    if (order?.items && order?.rotti && order?.amountPaid) {
       setItems(order?.items);
       setRotti(order?.rotti);
       setAmountPaid(order?.amountPaid);
@@ -33,10 +33,10 @@ function LunchData({ type, order }) {
   const SubmitForm = async (e) => {
     e.preventDefault();
     let date = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Karachi',
       hourCycle: 'h24'
     });
     date = date + 'Z';
-    // let date = '2022-08-13T09:00:00'; this line is for testing
     const newOrder = {
       email: user?.email,
       employeeName: user?.userName,
@@ -49,6 +49,9 @@ function LunchData({ type, order }) {
     const result = await orderData(newOrder);
     if (result?.status === 200) {
       toast('Order placed Successfully!');
+      setItems('');
+      setRotti('');
+      setAmountPaid('');
     } else {
       toast(result?.response?.data?.metadata?.message);
     }
@@ -61,24 +64,27 @@ function LunchData({ type, order }) {
       rotiQuantity: rotti,
       amount: amountPaid
     };
-    const order = await updateOrder(newOrder);
-    if (order?.status === 200) {
-      toast('Order updated!');
+    const orders = await updateOrder(newOrder);
+    if (orders?.status === 200) {
+      toast(orders?.data?.metadata?.message);
     } else {
-      toast(order?.response?.data?.metadata?.message);
+      toast(orders?.response?.data?.metadata?.message);
     }
-    dispatch(lunchOrderItem(order));
+    dispatch(lunchOrderItem(orders));
   };
 
   const handleDeleteOrder = async (e) => {
     e.preventDefault();
-    const order = await deleteOrder(oId?._id);
-    if (order?.status === 200) {
-      toast('Order Deleted Successfully!');
+    const lunchOrder = await deleteOrder(oId?._id);
+    if (lunchOrder?.status === 200) {
+      toast(lunchOrder?.data?.metadata?.message);
+      setItems('');
+      setRotti('');
+      setAmountPaid('');
     } else {
-      toast(order?.response?.data?.metadata?.message);
+      toast(lunchOrder?.response?.data?.metadata?.message);
     }
-    dispatch(lunchOrderDelete(order));
+    dispatch(lunchOrderItem(lunchOrder));
   };
   return (
     <ThemeProvider theme={theme}>
@@ -101,7 +107,6 @@ function LunchData({ type, order }) {
             height: 'max-content'
           }}>
           <Box
-            component="form"
             onSubmit={SubmitForm}
             sx={{
               display: 'flex',
@@ -171,7 +176,7 @@ function LunchData({ type, order }) {
                   onClick={SubmitForm}
                   icon={<CheckIcon />}
                   variant="contained"
-                  disabled={userName === '' || items === '' || rotti === '' || amountPaid === ''}
+                  disabled={!userName || !items || !rotti || !amountPaid}
                 />
               </Grid>
               <ToastContainer

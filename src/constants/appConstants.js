@@ -9,7 +9,6 @@ export const eveningTeaStart = 0 * 60 + 0;
 export const eveningTeaEnd = 17 * 60 + 0;
 export const morningResultStart = 11 * 60 + 0;
 export const morningResultEnd = 23 * 60 + 0;
-export const lunchResultStart = 13 * 60 + 0;
 export const lunchResultEnd = 23 * 60 + 0;
 export const eveningResultStart = 17 * 60 + 0;
 export const eveningResultEnd = 23 * 60 + 0;

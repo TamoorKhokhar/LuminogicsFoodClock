@@ -50,9 +50,9 @@ function HomePage() {
               flexDirection: 'column'
             }}>
             <Grid item xs={10}>
-              <Typography variant="h2"> Start Your Day With Fresh Mind</Typography>
+              <Typography variant="h1">PLACE ORDER!!</Typography>
               <Typography variant="subtitle1">
-                “Tell me what you eat, and I will tell you who you are.”
+                <b>“By Clicking The Below Cards”</b>
               </Typography>
             </Grid>
 

@@ -12,14 +12,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteOrder } from '../utils/services/tableDataServices';
-import {
-  user_Order,
-  order_delete,
-  eveningOrderItem,
-  eveningOrderDelete
-} from '../redux/action/actions';
+import { user_Order, eveningOrderItem } from '../redux/action/actions';
 import { ToastContainer, toast } from 'react-toastify';
-function TeaData({ type, order }) {
+function TeaData({ type, order, setOpen }) {
   const [sugarQuantity, setSugarQuantity] = useState('');
   const [teaVolume, setTeaVolume] = useState('');
   const user = useSelector((state) => state?.signIn?.signIn) || '';
@@ -28,7 +23,7 @@ function TeaData({ type, order }) {
   const orderId = useSelector((state) => state?.userOrder[0]);
   const oId = useSelector((state) => state?.eveningOrder[0]);
   useEffect(() => {
-    if (order) {
+    if (order?.sugarQuantity && order?.teaVolume) {
       setSugarQuantity(order?.sugarQuantity);
       setTeaVolume(order?.teaVolume);
     }
@@ -37,11 +32,10 @@ function TeaData({ type, order }) {
   const SubmitForm = async (e) => {
     e.preventDefault();
     let date = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Karachi',
       hourCycle: 'h24'
     });
     date = date + 'Z';
-    // let date = '2022-08-14T01:00:00'; this line is for testing
-
     const newOrder = {
       email: user?.email,
       employeeName: user?.userName,
@@ -55,6 +49,7 @@ function TeaData({ type, order }) {
       toast('Order placed Successfully!');
       setSugarQuantity('');
       setTeaVolume('');
+      setOpen(false);
     } else {
       toast(result?.response?.data?.metadata?.message);
     }
@@ -67,30 +62,26 @@ function TeaData({ type, order }) {
         sugerQuantity: sugarQuantity,
         teaVolume: teaVolume
       };
-      const order = await updateOrder(newOrder);
-      if (order?.status === 200) {
-        toast('Order updated');
-        setSugarQuantity('');
-        setTeaVolume('');
+      const morningOrder = await updateOrder(newOrder);
+      if (morningOrder?.status === 200) {
+        toast(morningOrder?.data?.metadata?.message);
       } else {
-        toast(order?.response?.data?.metadata?.message);
+        toast(morningOrder?.response?.data?.metadata?.message);
       }
-      dispatch(user_Order(order));
+      dispatch(user_Order(morningOrder));
     } else if (type === 'Evening-Tea') {
       const newOrder = {
         _id: oId?._id,
         sugerQuantity: sugarQuantity,
         teaVolume: teaVolume
       };
-      const order = await updateOrder(newOrder);
-      if (order?.status === 200) {
-        toast('Order updated Successfully!');
-        setSugarQuantity('');
-        setTeaVolume('');
+      const orders = await updateOrder(newOrder);
+      if (orders?.status === 200) {
+        toast(orders?.data?.metadata?.message);
       } else {
-        toast(order?.response?.data?.metadata?.message);
+        toast(orders?.response?.data?.metadata?.message);
       }
-      dispatch(eveningOrderItem(order));
+      dispatch(eveningOrderItem(orders?.data?.payload?.data));
     }
   };
   const handleDeleteOrder = async (e) => {
@@ -98,23 +89,23 @@ function TeaData({ type, order }) {
     if (type === 'Morning-Tea') {
       const order = await deleteOrder(orderId?._id);
       if (order?.status === 200) {
-        toast('Order Deleted Successfully!');
+        toast(order?.data?.metadata?.message);
         setSugarQuantity('');
         setTeaVolume('');
       } else {
         toast(order?.response?.data?.metadata?.message);
       }
-      dispatch(order_delete(order, orderId?._id));
+      dispatch(user_Order(order, orderId?._id));
     } else if (type === 'Evening-Tea') {
       const order = await deleteOrder(oId?._id);
       if (order?.status === 200) {
-        toast('Order Deleted Successfully!');
+        toast(order?.data?.metadata?.message);
         setSugarQuantity('');
         setTeaVolume('');
       } else {
         toast(order?.response?.data?.metadata?.message);
       }
-      dispatch(eveningOrderDelete(order, oId?._id));
+      dispatch(eveningOrderItem(order, oId?._id));
     }
     setSugarQuantity('');
     setTeaVolume('Half cup');
@@ -130,7 +121,6 @@ function TeaData({ type, order }) {
           minHeight: 'max-content'
         }}>
         <Box
-          component="form"
           onSubmit={SubmitForm}
           sx={{
             display: 'flex',
@@ -196,7 +186,13 @@ function TeaData({ type, order }) {
                 />
               </Grid>
               <Grid item xs={12} md={3} lg={2}>
-                <Btn text="Order" icon={<CheckIcon />} onClick={SubmitForm} variant="contained" />
+                <Btn
+                  text="Order"
+                  icon={<CheckIcon />}
+                  onClick={SubmitForm}
+                  variant="contained"
+                  disabled={!sugarQuantity || !teaVolume}
+                />
               </Grid>{' '}
               <ToastContainer
                 position="top-right"
