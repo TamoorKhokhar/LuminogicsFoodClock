@@ -52,7 +52,9 @@ function LunchData({ type, order }) {
       setItems('');
       setRotti('');
       setAmountPaid('');
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     } else {
       toast(result?.response?.data?.metadata?.message);
     }
@@ -68,7 +70,9 @@ function LunchData({ type, order }) {
     const orders = await updateOrder(newOrder);
     if (orders?.status === 200) {
       toast(orders?.data?.metadata?.message);
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     } else {
       toast(orders?.response?.data?.metadata?.message);
     }
@@ -83,7 +87,9 @@ function LunchData({ type, order }) {
       setItems('');
       setRotti('');
       setAmountPaid('');
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     } else {
       toast(lunchOrder?.response?.data?.metadata?.message);
     }

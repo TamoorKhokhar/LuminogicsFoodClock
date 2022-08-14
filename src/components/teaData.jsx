@@ -49,7 +49,9 @@ function TeaData({ type, order }) {
       toast('Order placed Successfully!');
       setSugarQuantity('');
       setTeaVolume('');
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
     } else {
       toast(result?.response?.data?.metadata?.message);
     }
@@ -65,7 +67,9 @@ function TeaData({ type, order }) {
       const morningOrder = await updateOrder(newOrder);
       if (morningOrder?.status === 200) {
         toast(morningOrder?.data?.metadata?.message);
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       } else {
         toast(morningOrder?.response?.data?.metadata?.message);
       }
@@ -79,7 +83,9 @@ function TeaData({ type, order }) {
       const orders = await updateOrder(newOrder);
       if (orders?.status === 200) {
         toast(orders?.data?.metadata?.message);
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       } else {
         toast(orders?.response?.data?.metadata?.message);
       }
@@ -94,7 +100,9 @@ function TeaData({ type, order }) {
         toast(order?.data?.metadata?.message);
         setSugarQuantity('');
         setTeaVolume('');
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       } else {
         toast(order?.response?.data?.metadata?.message);
       }
@@ -105,7 +113,9 @@ function TeaData({ type, order }) {
         toast(order?.data?.metadata?.message);
         setSugarQuantity('');
         setTeaVolume('');
-        location.reload();
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
       } else {
         toast(order?.response?.data?.metadata?.message);
       }
