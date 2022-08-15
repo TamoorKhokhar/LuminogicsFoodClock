@@ -4,7 +4,7 @@ const initialState = {
 
 const signInReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "signIn":
+    case 'signIn':
       return {
         ...state,
         signIn: { ...state.signIn, ...action.payload }

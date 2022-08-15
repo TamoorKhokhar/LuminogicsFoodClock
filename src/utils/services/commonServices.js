@@ -1,21 +1,21 @@
-import { BASE_URL, NETWORK_ERROR } from "../../constants/appConstants";
+import { BASE_URL, NETWORK_ERROR } from '../../constants/appConstants';
 function buildApiEndpoint(path) {
   const url = new URL(path, BASE_URL);
   return url.href;
 }
 export const request = async (
   path,
-  method = "GET",
+  method = 'GET',
   body = {},
-  contentType = "application/json"
+  contentType = 'application/json'
 ) => {
   const fetchOption = {
     method,
     headers: new Headers({
-      Accept: "application/json",
-      "Content-Type": contentType
+      Accept: 'application/json',
+      'Content-Type': contentType
     }),
-    ...(method !== "GET" ? { body: JSON.stringify(body) } : {})
+    ...(method !== 'GET' ? { body: JSON.stringify(body) } : {})
   };
   try {
     const res = await fetch(buildApiEndpoint(path), fetchOption);
@@ -29,4 +29,10 @@ export const request = async (
     alert(NETWORK_ERROR);
     throw new Error(err);
   }
+};
+export const setHeaders = () => {
+  const headerConfig = {
+    headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
+  };
+  return headerConfig;
 };
