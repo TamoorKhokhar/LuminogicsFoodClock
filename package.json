@@ -1,5 +1,5 @@
 {
-  "name": "luminogicsfoodclock",
+  "name": "luminogicsfoodcloc k",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,6 +27,10 @@
     "redux-toolkit": "^1.1.2",
     "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
+  },
+  "engines" : { 
+    "npm" : ">=16.0.0",
+    "node" : ">=8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
