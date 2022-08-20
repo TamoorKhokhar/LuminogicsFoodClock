@@ -12,12 +12,21 @@ const theme = createTheme({
   },
   typography: {
     h1: {
-      fontFamily: 'Lucida Handwriting',
       fontSize: '2.5rem',
       fontWeight: 700,
       color: '#242424',
-      paddingRight: '3rem',
-      paddingLeft: '3rem',
+      textAlign: 'left'
+    },
+    subtitle1: {
+      fontWeight: 200,
+      fontSize: '1.5rem',
+      textAlign: 'left'
+    },
+    subtitle2: {
+      fontWeight: 200,
+      fontSize: '1.5rem',
+      paddingLeft: '2rem',
+      paddingRight: '2rem',
       textAlign: 'center'
     },
     h2: {
@@ -57,14 +66,6 @@ const theme = createTheme({
       width: 'max-content',
       marginTop: '0.5rem',
       marginBottom: '0.5rem'
-    },
-    subtitle1: {
-      fontWeight: 200,
-      fontSize: '1.5rem',
-      paddingLeft: '2rem',
-      paddingRight: '2rem',
-      textAlign: 'center',
-      color: '#686868'
     }
   },
   components: {

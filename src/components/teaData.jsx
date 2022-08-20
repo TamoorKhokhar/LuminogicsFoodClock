@@ -36,6 +36,7 @@ function TeaData({ type, order }) {
       hourCycle: 'h24'
     });
     date = date + 'Z';
+    // let date = '2022-08-21T09:00:00';
     const newOrder = {
       email: user?.email,
       employeeName: user?.userName,
@@ -158,7 +159,7 @@ function TeaData({ type, order }) {
             <TextField
               required
               id="outlined-required"
-              label="Required"
+              label="User Name"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
@@ -167,7 +168,7 @@ function TeaData({ type, order }) {
               required
               inputProps={{ min: 0, max: 10 }}
               id="outlined-required"
-              label="Required"
+              label="Sugar Quantatity"
               type="number"
               value={sugarQuantity}
               onChange={(e) => setSugarQuantity(e.target.value)}
@@ -179,47 +180,65 @@ function TeaData({ type, order }) {
               value={teaVolume || ''}
               onChange={(e) => setTeaVolume(e.target.value)}
             />
-            <Grid
-              container
-              sx={{ justifyContent: 'space-around', marginTop: '25px', marginBottom: '0.5rem' }}>
-              <Grid item xs={12} lg={5}></Grid>
-              <Grid item xs={12} md={3} lg={2}>
-                <Btn
-                  text="Delete"
-                  onClick={handleDeleteOrder}
-                  icon={<DeleteIcon />}
-                  variant="Contained"
-                  style={{ backgroundColor: 'red', color: 'white' }}
-                />
+            {order?.sugarQuantity && order?.teaVolume && (
+              <Grid
+                container
+                sx={{
+                  justifyContent: 'space-around',
+                  marginTop: '15px',
+                  marginBottom: '0.5rem'
+                }}>
+                <Grid item xs={12} lg={8}></Grid>
+                <Grid item xs={12} md={12} lg={1.8}>
+                  <Btn
+                    text="Edit"
+                    onClick={handleUpdateOrder}
+                    icon={<EditIcon />}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={12} md={12} lg={1.8}>
+                  <Btn
+                    text="Delete"
+                    onClick={handleDeleteOrder}
+                    icon={<DeleteIcon />}
+                    variant="Contained"
+                    style={{ backgroundColor: 'red', color: 'white' }}
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12} md={3} lg={2}>
-                <Btn
-                  text="Edit"
-                  onClick={handleUpdateOrder}
-                  icon={<EditIcon />}
-                  variant="outlined"
-                />
+            )}
+            {!order?.sugarQuantity && !order?.teaVolume && (
+              <Grid
+                container
+                sx={{
+                  justifyContent: 'space-around',
+                  marginTop: '25px',
+                  marginBottom: '0.5rem'
+                }}>
+                <Grid item xs={12} lg={10}></Grid>
+                <Grid item xs={12} md={12} lg={2}>
+                  <Btn
+                    text="Order"
+                    icon={<CheckIcon />}
+                    onClick={SubmitForm}
+                    variant="contained"
+                    disabled={!sugarQuantity || !teaVolume}
+                  />
+                </Grid>{' '}
               </Grid>
-              <Grid item xs={12} md={3} lg={2}>
-                <Btn
-                  text="Order"
-                  icon={<CheckIcon />}
-                  onClick={SubmitForm}
-                  variant="contained"
-                  disabled={!sugarQuantity || !teaVolume}
-                />
-              </Grid>{' '}
-              <ToastContainer
-                position="top-right"
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-              />
-            </Grid>
+            )}
+
+            <ToastContainer
+              position="top-right"
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
           </Box>
         </Box>
       </Grid>

@@ -15,7 +15,7 @@ function MenuCard({ title, src, handleOpen, disabled }) {
         position: 'relative'
       }}>
       <Box
-        className="imageContainer"
+        className={disabled ? '' : 'imageContainer'}
         sx={{
           height: '90%',
           width: '80%',

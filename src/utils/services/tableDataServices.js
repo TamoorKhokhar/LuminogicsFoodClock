@@ -31,7 +31,8 @@ export const orderData = async (body) => {
 export const getUserOrder = async (email, orderType) => {
   try {
     return await axios.get(
-      BASE_URL + `/api/users/get-employee-order?email=${email}&orderType=${orderType}`
+      BASE_URL + `/api/users/get-employee-order?email=${email}&orderType=${orderType}`,
+      setHeaders()
     );
   } catch (error) {
     return error;

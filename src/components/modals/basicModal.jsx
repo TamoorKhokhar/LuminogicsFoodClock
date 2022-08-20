@@ -32,16 +32,18 @@ export default function BasicModal({
   image,
   button,
   type,
+  disSrc,
   disabled
 }) {
   const user = useSelector((state) => state?.signIn?.signIn) || '';
+
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);
     const callingApi = () => {
-      getUserOrder(user.email, type)
+      getUserOrder(user?.email, type)
         .then((res) => {
           if (type === 'Morning-Tea') {
             dispatch(user_Order(res?.data?.payload?.data));
@@ -86,7 +88,7 @@ export default function BasicModal({
         disabled={disabled}
         handleOpen={handleOpen}
         title={title}
-        src={src}
+        src={disabled ? disSrc : src}
         button={button}
         type={type}
       />
