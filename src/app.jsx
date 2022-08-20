@@ -1,12 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/landingPage";
-import SignIn from "./pages/authentication/signIn";
-import SignUp from "./pages/authentication/signUp";
-import Protected from "./components/protected";
-import AdminHomePage from "./pages/adminDashBoard";
-import Auth from "./components/auth";
-import HomePage from "./pages/homePage";
-import AdminLogin from "./pages/adminLogin";
+import { Route, Routes } from 'react-router-dom';
+import LandingPage from './pages/landingPage';
+import SignIn from './pages/authentication/signIn';
+import SignUp from './pages/authentication/signUp';
+import Protected from './components/protected';
+import AdminHomePage from './pages/adminDashBoard';
+import Auth from './components/auth';
+import HomePage from './pages/homePage';
+import AdminLogin from './pages/adminLogin';
 function App() {
   return (
     <>

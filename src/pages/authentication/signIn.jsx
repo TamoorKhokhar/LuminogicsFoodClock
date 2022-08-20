@@ -49,20 +49,37 @@ function SignIn() {
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            minHeight: '100vh',
-            backgroundColor: '#96BEF0'
+            alignItems: 'center',
+            height: 'max-content',
+            marginTop: '2rem'
           }}>
           <Grid
             item
-            md={6}
+            lg={5}
+            xs={10}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: `1.5rem`
+            }}>
+            <Typography variant="h1">LUMINOGICS FOOD CLOCK</Typography>
+            <Typography variant="subtitle1" className="subTitle">
+              <b>Welcome to Luminogics Food Clock!! </b>We are offering one of the easiest way to
+              place your everyday orders by sitting on your desk.
+            </Typography>
+          </Grid>
+          <Grid
+            item
+            lg={5}
             xs={10}
             sx={{
               display: 'flex',
               justifyContent: 'center',
+              alignItems: 'center',
               boxShadow: '2px 2px 5px 5px #243136',
               borderRadius: '10px',
               height: 'max-content',
-              marginTop: '8rem',
+              marginTop: '2rem',
               backgroundColor: '#fafafa'
             }}>
             <Box
@@ -139,11 +156,6 @@ function SignIn() {
                     pauseOnHover
                   />
                   <Grid container>
-                    <Grid item xs>
-                      <Link href="/adminLogin" variant="body2">
-                        Sign In As Admin
-                      </Link>
-                    </Grid>
                     <Grid item>
                       <Link href="/signUp" variant="body2">
                         Don&apos;t have an account? Sign Up
