@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<SignIn />} />
         <Route path="/signIn" element={<Protected Component={SignIn} />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/homePage" element={<Protected Component={HomePage} />} />
