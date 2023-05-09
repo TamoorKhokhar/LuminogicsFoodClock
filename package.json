@@ -28,6 +28,10 @@
     "thunk": "^0.0.1",
     "web-vitals": "^2.1.4"
   },
+  "engines" : { 
+    "npm" : "8.11.0",
+    "node" : "16.15.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

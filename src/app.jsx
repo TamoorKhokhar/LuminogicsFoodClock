@@ -1,4 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import LandingPage from './pages/landingPage';
+>>>>>>> d5320643db93aa2c3cf63b49d4bc4e731ea5d344
 import SignIn from './pages/authentication/signIn';
 import SignUp from './pages/authentication/signUp';
 import Protected from './components/protected';

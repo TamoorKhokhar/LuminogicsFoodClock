@@ -12,14 +12,63 @@ const theme = createTheme({
   },
   typography: {
     h1: {
+<<<<<<< HEAD
       fontSize: '2.5rem',
       fontWeight: 700,
       color: '#242424',
       textAlign: 'left'
+=======
+      fontFamily: 'Lucida Handwriting',
+      fontSize: '2.5rem',
+      fontWeight: 700,
+      color: '#242424',
+      paddingRight: '3rem',
+      paddingLeft: '3rem',
+      textAlign: 'center'
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 700,
+      color: '#242424',
+      paddingRight: '3rem',
+      paddingLeft: '3rem',
+      textAlign: 'center'
+    },
+    h3: {
+      fontSize: '1.5rem',
+      fontWeight: 700,
+      textAlign: 'center',
+      color: '#242424',
+      cursor: 'pointer'
+    },
+    h4: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+      marginTop: '1rem',
+      color: '#242424'
+    },
+    h5: {
+      fontSize: '1.3rem',
+      textAlign: 'center',
+      fontWeight: 600
+    },
+    h6: {
+      fontSize: '1.3rem',
+      textAlign: 'center',
+      width: 'max-content'
+    },
+    p1: {
+      fontSize: '1rem',
+      textAlign: 'center',
+      width: 'max-content',
+      marginTop: '0.5rem',
+      marginBottom: '0.5rem'
+>>>>>>> d5320643db93aa2c3cf63b49d4bc4e731ea5d344
     },
     subtitle1: {
       fontWeight: 200,
       fontSize: '1.5rem',
+<<<<<<< HEAD
       textAlign: 'left'
     },
     subtitle2: {
@@ -66,6 +115,12 @@ const theme = createTheme({
       width: 'max-content',
       marginTop: '0.5rem',
       marginBottom: '0.5rem'
+=======
+      paddingLeft: '2rem',
+      paddingRight: '2rem',
+      textAlign: 'center',
+      color: '#686868'
+>>>>>>> d5320643db93aa2c3cf63b49d4bc4e731ea5d344
     }
   },
   components: {
