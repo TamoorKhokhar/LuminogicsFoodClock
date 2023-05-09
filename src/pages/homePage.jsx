@@ -10,23 +10,23 @@ import LunchImage from '../assets/images/Lunch.png';
 import EveningTeaImage from '../assets/images/EveningTea.png';
 import TimesUpImage from '../assets/images/Timesburger.png';
 import TimesUpCupImage from '../assets/images/Timescup.png';
-import { morningTeaStart } from '../constants/appConstants';
-import { morningTeaEnd } from '../constants/appConstants';
-import { lunchStart } from '../constants/appConstants';
-import { lunchEnd } from '../constants/appConstants';
-import { eveningTeaStart } from '../constants/appConstants';
-import { eveningTeaEnd } from '../constants/appConstants';
+// import { morningTeaStart } from '../constants/appConstants';
+// import { morningTeaEnd } from '../constants/appConstants';
+// import { lunchStart } from '../constants/appConstants';
+// import { lunchEnd } from '../constants/appConstants';
+// import { eveningTeaStart } from '../constants/appConstants';
+// import { eveningTeaEnd } from '../constants/appConstants';
 import { useSelector } from 'react-redux';
 import ModallunchImage from '../assets/images/ModalLunch.png';
 import ModalMorningTeaImage from '../assets/images/ModalMorningTea.png';
 import ModalEveningTeaImage from '../assets/images/ModalEveningtea.png';
 
 function HomePage() {
-  function inTime(start, end) {
-    var now = new Date();
-    var time = now.getHours() * 60 + now.getMinutes();
-    return time >= start && time < end;
-  }
+  // function inTime(start, end) {
+  //   var now = new Date();
+  //   var time = now.getHours() * 60 + now.getMinutes();
+  //   return time >= start && time < end;
+  // }
   const order = useSelector((state) => state?.userOrder[0]);
   const lunchh = useSelector((state) => state?.lunchOrder[0]);
   const tea = useSelector((state) => state?.eveningOrder[0]);
@@ -73,7 +73,7 @@ function HomePage() {
               justifyContent: 'center'
             }}>
             <BasicModal
-              disabled={!inTime(morningTeaStart, morningTeaEnd)}
+              // disabled={!inTime(morningTeaStart, morningTeaEnd)}
               type="Morning-Tea"
               teaData={
                 <TeaData
@@ -92,7 +92,7 @@ function HomePage() {
             />
 
             <BasicModal
-              disabled={!inTime(lunchStart, lunchEnd)}
+              // disabled={!inTime(lunchStart, lunchEnd)}
               type="Lunch"
               lunchData={
                 <LunchData
@@ -111,7 +111,7 @@ function HomePage() {
               image={ModallunchImage}
             />
             <BasicModal
-              disabled={!inTime(eveningTeaStart, eveningTeaEnd)}
+              // disabled={!inTime(eveningTeaStart, eveningTeaEnd)}
               type="Evening-Tea"
               teaData={
                 <TeaData

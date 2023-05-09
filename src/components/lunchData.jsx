@@ -32,12 +32,12 @@ function LunchData({ type, order }) {
 
   const SubmitForm = async (e) => {
     e.preventDefault();
-    let date = new Date().toLocaleString('en-US', {
-      timeZone: 'Asia/Karachi',
-      hourCycle: 'h24'
-    });
-    date = date + 'Z';
-    // let date = '2022-08-21T09:00:00';
+    // let date = new Date().toLocaleString('en-US', {
+    //   timeZone: 'Asia/Karachi',
+    //   hourCycle: 'h24'
+    // });
+    // date = date + 'Z';
+    let date = '2022-08-21T09:00:00';
     const newOrder = {
       email: user?.email,
       employeeName: user?.userName,
